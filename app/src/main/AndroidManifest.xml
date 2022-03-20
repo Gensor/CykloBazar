@@ -11,7 +11,7 @@
         android:theme="@style/Theme.CykloBazar">
         <activity
             android:name=".SignUpActivity"
-            android:exported="false" />
+            android:exported="true"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true"
