@@ -6,4 +6,6 @@
     <string name="name">Name</string>
     <string name="sign_up_button">SIGN UP</string>
     <string name="sign_up_toolbar_sign_up">Sign Up</string>
+    <string name="login_button">login</string>
+    <string name="login_toolbar_login">login</string>
 </resources>
