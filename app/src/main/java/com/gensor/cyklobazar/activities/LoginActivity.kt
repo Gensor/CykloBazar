@@ -1,11 +1,10 @@
-package com.example.cyklobazar.activities
+package com.gensor.cyklobazar.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.cyklobazar.R
+import com.gensor.cyklobazar.R
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

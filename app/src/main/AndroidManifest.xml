@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cyklobazar">
+    package="com.gensor.cyklobazar">
 
     <application
         android:allowBackup="true"
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.gensor.cyklobazar.activities.MainActivity"
             android:exported="true" />
     </application>
 

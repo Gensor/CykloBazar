@@ -1,4 +1,4 @@
-package com.example.cyklobazar
+package com.gensor.cyklobazar
 
 import org.junit.Test
 

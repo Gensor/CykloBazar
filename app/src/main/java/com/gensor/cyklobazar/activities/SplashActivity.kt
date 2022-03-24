@@ -1,13 +1,12 @@
-package com.example.cyklobazar.activities
+package com.gensor.cyklobazar.activities
 
 import android.content.Intent
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.TextView
-import com.example.cyklobazar.R
+import com.gensor.cyklobazar.R
 
 class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

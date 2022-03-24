@@ -1,12 +1,11 @@
-package com.example.cyklobazar.activities
+package com.gensor.cyklobazar.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.example.cyklobazar.R
+import com.gensor.cyklobazar.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

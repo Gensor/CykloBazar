@@ -1,4 +1,4 @@
-package com.example.cyklobazar.activities
+package com.gensor.cyklobazar.activities
 
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.example.cyklobazar.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.gensor.cyklobazar.R
 import kotlinx.android.synthetic.main.dialog_progress.*
 
 open class BaseActivity : AppCompatActivity() {
