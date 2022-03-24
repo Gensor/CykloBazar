@@ -8,4 +8,6 @@
     <string name="sign_up_toolbar_sign_up">Sign Up</string>
     <string name="login_button">login</string>
     <string name="login_toolbar_login">login</string>
+    <string name="please_wait">please wait</string>
+    <string name="please_click_back_againt_to_exit">Please click back again to exit</string>
 </resources>

@@ -9,7 +9,7 @@ import android.os.Looper
 import android.widget.TextView
 import com.example.cyklobazar.R
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
