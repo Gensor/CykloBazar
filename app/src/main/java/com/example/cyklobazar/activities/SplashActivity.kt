@@ -1,4 +1,4 @@
-package com.example.cyklobazar
+package com.example.cyklobazar.activities
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.WindowManager
 import android.widget.TextView
+import com.example.cyklobazar.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
         tv_app_name.typeface = typeFace
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, 1500)
     }
