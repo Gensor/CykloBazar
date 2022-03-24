@@ -6,6 +6,8 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import com.gensor.cyklobazar.R
+import com.gensor.cyklobazar.firebase.FirestoreClass
+import com.gensor.cyklobazar.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -49,10 +51,7 @@ class LoginActivity : BaseActivity() {
                 .addOnCompleteListener(this) { task ->
                     hideProgressDialog()
                     if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("Login", "signInWithEmail:success")
-                        val user = auth.currentUser
-                        startActivity(Intent(this, MainActivity::class.java))
+                        FirestoreClass().loginUser(this)
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("Login", "signInWithEmail:failure", task.exception)
@@ -75,6 +74,12 @@ class LoginActivity : BaseActivity() {
             }
             else -> return true
         }
+    }
+
+    fun loginSuccess() {
+        hideProgressDialog()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
 

@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.TextView
 import com.gensor.cyklobazar.R
+import com.gensor.cyklobazar.firebase.FirestoreClass
 
 class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +19,10 @@ class SplashActivity : BaseActivity() {
         tv_app_name.typeface = typeFace
 
         Handler(Looper.getMainLooper()).postDelayed({
+            val currentUserID = FirestoreClass().getUserId()
+            if (currentUserID.isNotEmpty()){
+                //todo: naloguj ho do sidebaru
+            }
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, 1500)

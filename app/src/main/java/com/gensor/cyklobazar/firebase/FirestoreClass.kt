@@ -1,5 +1,6 @@
 package com.gensor.cyklobazar.firebase
 
+import com.gensor.cyklobazar.activities.LoginActivity
 import com.gensor.cyklobazar.activities.SignUpActivity
 import com.gensor.cyklobazar.models.User
 import com.gensor.cyklobazar.utils.Constants
@@ -20,5 +21,23 @@ class FirestoreClass{
 
     }
 
-    fun getUserId() : String = FirebaseAuth.getInstance().currentUser!!.uid
+    fun loginUser(activity: LoginActivity){
+        fireStore.collection(Constants.USERS)
+            .document(getUserId())
+            .get()
+            .addOnSuccessListener {
+                document ->
+                val logedUser = document.toObject(User::class.java)
+                if (logedUser != null) activity.loginSuccess()
+            }
+    }
+
+    fun getUserId() : String {
+        val user = FirebaseAuth.getInstance().currentUser
+        var userId = ""
+        if (user != null){
+            userId = user.uid
+        }
+        return userId
+    }
 }
