@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import com.gensor.cyklobazar.R
+import com.gensor.cyklobazar.firebase.FirestoreClass
+import com.gensor.cyklobazar.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -60,21 +62,26 @@ class SignUpActivity : BaseActivity() {
         if(validateForm(name, email, password)){
             showProgressDialog(resources.getString(R.string.please_wait))
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
-                hideProgressDialog()
+
                 if (task.isSuccessful) {
                     val firebaseUser: FirebaseUser = task.result!!.user!!
                     val registeredEmail = firebaseUser.email!!
-                    Toast.makeText(
-                        this, "$name succesfully registered",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    FirebaseAuth.getInstance().signOut()
-                    finish()
+                    val user = User(firebaseUser.uid, name, registeredEmail)
+                    FirestoreClass().registerUser(this, user)
                 } else {
                     Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
                 }
             }
 
         }
+    }
+    fun userRegisteredSuccess(){
+        Toast.makeText(
+            this, "succesfully registered",
+            Toast.LENGTH_LONG
+        ).show()
+        hideProgressDialog()
+        FirebaseAuth.getInstance().signOut()
+        finish()
     }
 }
