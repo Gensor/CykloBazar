@@ -1,12 +1,18 @@
 package com.gensor.cyklobazar.firebase
 
+import android.app.Activity
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import com.gensor.cyklobazar.activities.LoginActivity
+import com.gensor.cyklobazar.activities.MainActivity
 import com.gensor.cyklobazar.activities.RegisterActivity
 import com.gensor.cyklobazar.models.User
 import com.gensor.cyklobazar.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 
 class FirestoreClass{
@@ -21,14 +27,29 @@ class FirestoreClass{
 
     }
 
-    fun loginUser(activity: LoginActivity){
+    fun loginUser(activity: Activity){
+        val id = getUserId()
+        if(id == "")return
         fireStore.collection(Constants.USERS)
-            .document(getUserId())
+            .document(id)
             .get()
             .addOnSuccessListener {
                 document ->
-                val logedUser = document.toObject(User::class.java)
-                if (logedUser != null) activity.loginSuccess()
+                val loggedUser = document.toObject(User::class.java)!!
+                when(activity){
+                    is LoginActivity -> {activity.loginSuccess()}
+                    is MainActivity -> {activity.updateUserInMenu(loggedUser)}
+                }
+
+            }.addOnFailureListener { e ->
+                when (activity) {
+                    is LoginActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is MainActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
             }
     }
 

@@ -1,20 +1,28 @@
 package com.gensor.cyklobazar.activities
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.bumptech.glide.Glide
 import com.gensor.cyklobazar.R
+import com.gensor.cyklobazar.firebase.FirestoreClass
+import com.gensor.cyklobazar.models.User
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
+import com.squareup.picasso.Picasso;
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +32,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         //todo: if getinstance == true tak menuPrihlaseny nacitaj a ak false tak menuOdhlaseny
         nav_view.setNavigationItemSelectedListener(this)
-
+        FirestoreClass().loginUser(this@MainActivity)
     }
 
     override fun onBackPressed() {
@@ -56,11 +64,23 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val actionBar = supportActionBar
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setHomeAsUpIndicator(com.google.android.material.R.drawable.abc_menu_hardkey_panel_mtrl_mult)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_reorder_24)
             actionBar.setDisplayShowTitleEnabled(true)
         }
         toolbar_main_activity?.setNavigationOnClickListener {
             drawer_layout.openDrawer(GravityCompat.START)
         }
+    }
+
+    fun updateUserInMenu(user: User) {
+
+        Glide
+            .with(this)
+            .load(user.image)
+            .centerCrop()
+            .placeholder(R.drawable.ic_baseline_person_24)
+            .into(iv_user_image)
+
+        tv_username.text = user.name
     }
 }
