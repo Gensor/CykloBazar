@@ -30,7 +30,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setContentView(R.layout.activity_main)
         setupActionBar()
 
-        //todo: if getinstance == true tak menuPrihlaseny nacitaj a ak false tak menuOdhlaseny
         nav_view.setNavigationItemSelectedListener(this)
         FirestoreClass().loginUser(this@MainActivity)
     }
@@ -80,7 +79,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             .centerCrop()
             .placeholder(R.drawable.ic_baseline_person_24)
             .into(iv_user_image)
-
         tv_username.text = user.name
+
+        nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_logged, true)
+        nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_sign_out, false)
+
     }
 }
