@@ -1,7 +1,7 @@
 package com.gensor.cyklobazar.firebase
 
 import com.gensor.cyklobazar.activities.LoginActivity
-import com.gensor.cyklobazar.activities.SignUpActivity
+import com.gensor.cyklobazar.activities.RegisterActivity
 import com.gensor.cyklobazar.models.User
 import com.gensor.cyklobazar.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -12,7 +12,7 @@ import com.google.firebase.firestore.SetOptions
 class FirestoreClass{
     private val fireStore = FirebaseFirestore.getInstance()
 
-    fun registerUser(activity: SignUpActivity, userInfo: User){
+    fun registerUser(activity: RegisterActivity, userInfo: User){
         fireStore.collection(Constants.USERS)
             .document(getUserId())
             .set(userInfo, SetOptions.merge())

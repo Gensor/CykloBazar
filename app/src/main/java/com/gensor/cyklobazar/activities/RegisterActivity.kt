@@ -8,13 +8,13 @@ import com.gensor.cyklobazar.firebase.FirestoreClass
 import com.gensor.cyklobazar.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.activity_register.*
 
-class SignUpActivity : BaseActivity() {
+class RegisterActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        setContentView(R.layout.activity_register)
         setupActionBar()
 
         button_signUp.setOnClickListener{

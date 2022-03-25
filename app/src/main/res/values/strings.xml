@@ -4,13 +4,13 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="name">Name</string>
-    <string name="sign_up_button">SIGN UP</string>
-    <string name="sign_up_toolbar_sign_up">Sign Up</string>
+    <string name="sign_up_button">register</string>
+    <string name="sign_up_toolbar_sign_up">register</string>
     <string name="login_button">login</string>
     <string name="login_toolbar_login">login</string>
     <string name="please_wait">please wait</string>
     <string name="please_click_back_againt_to_exit">Please click back again to exit</string>
-    <string name="nav_sign_out">sign out</string>
+    <string name="nav_log_out">log out</string>
     <string name="nav_my_profile">Profile</string>
 
     <string name="image_contentDescription">image</string>

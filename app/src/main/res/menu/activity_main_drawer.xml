@@ -10,6 +10,6 @@
         <item
             android:id="@+id/nav_sign_out"
             android:icon="@drawable/ic_baseline_login_24"
-            android:title="@string/nav_sign_out" />
+            android:title="@string/nav_log_out" />
     </group>
 </menu>
