@@ -36,7 +36,8 @@ class LoginActivity : BaseActivity() {
             actionBar.setDisplayShowTitleEnabled(false)
         }
         toolbar_login_top?.setNavigationOnClickListener {
-            onBackPressed()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 

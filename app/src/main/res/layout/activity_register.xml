@@ -7,33 +7,33 @@
     tools:context="com.gensor.cyklobazar.activities.RegisterActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_signup_top"
+        android:id="@+id/toolbar_register"
         android:layout_width="match_parent"
         android:layout_height="@dimen/splash_screen_title_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_signUp_toolbar"
+            android:id="@+id/tv_register_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sign_up_toolbar_sign_up"
+            android:text="@string/register_toolbar_register"
             android:layout_marginEnd="10dp"/>
     </androidx.appcompat.widget.Toolbar>
 
     <Button
-        android:id="@+id/button_signUp"
+        android:id="@+id/button_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="372dp"
-        android:text="@string/sign_up_button"
+        android:text="@string/register_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.205"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword_signUp"
+        android:id="@+id/editTextTextPassword_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -41,24 +41,24 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/button_signUp"
+        app:layout_constraintBottom_toTopOf="@+id/button_register"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName_signUp"
+        android:id="@+id/editTextTextPersonName_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:ems="10"
         android:hint="@string/name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress_signUp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress_register"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_signup_top"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_register"
         app:layout_constraintVertical_bias="0.864" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress_signUp"
+        android:id="@+id/editTextTextEmailAddress_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -66,7 +66,7 @@
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword_signUp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword_register"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

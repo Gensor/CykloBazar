@@ -1,5 +1,6 @@
 package com.gensor.cyklobazar.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
@@ -17,22 +18,23 @@ class RegisterActivity : BaseActivity() {
         setContentView(R.layout.activity_register)
         setupActionBar()
 
-        button_signUp.setOnClickListener{
+        button_register.setOnClickListener{
             registerUser()
         }
 
     }
 
     private fun setupActionBar(){
-        setSupportActionBar(toolbar_signup_top)
+        setSupportActionBar(toolbar_register)
         val actionBar = supportActionBar
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(com.google.android.material.R.drawable.abc_ic_ab_back_material)
             actionBar.setDisplayShowTitleEnabled(false)
         }
-        toolbar_signup_top?.setNavigationOnClickListener {
-            onBackPressed()
+        toolbar_register?.setNavigationOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 
@@ -55,9 +57,9 @@ class RegisterActivity : BaseActivity() {
     }
 
     private fun registerUser(){
-        val name: String = editTextTextPersonName_signUp.text.toString().trim()
-        val email: String = editTextTextEmailAddress_signUp.text.toString().trim()
-        val password: String = editTextTextPassword_signUp.text.toString()
+        val name: String = editTextTextPersonName_register.text.toString().trim()
+        val email: String = editTextTextEmailAddress_register.text.toString().trim()
+        val password: String = editTextTextPassword_register.text.toString()
 
         if(validateForm(name, email, password)){
             showProgressDialog(resources.getString(R.string.please_wait))
