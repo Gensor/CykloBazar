@@ -19,10 +19,6 @@ class SplashActivity : BaseActivity() {
         tv_app_name.typeface = typeFace
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val currentUserID = FirestoreClass().getUserId()
-            if (currentUserID.isNotEmpty()){
-                //todo: naloguj ho do sidebaru
-            }
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, 1500)

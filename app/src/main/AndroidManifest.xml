@@ -30,7 +30,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.gensor.cyklobazar.activities.MainActivity"
+            android:name=".activities.MainActivity"
+            android:theme="@style/Theme.CykloBazar.NoActionBar"
             android:exported="true" />
     </application>
 

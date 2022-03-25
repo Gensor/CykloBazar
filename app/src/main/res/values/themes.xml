@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.CykloBazar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="windowNoTitle">true</item>
+    <style name="Theme.CykloBazar" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_dark</item>
         <item name="colorPrimaryVariant">@color/blue_light</item>
@@ -10,14 +9,19 @@
         <item name="colorSecondary">@color/orange</item>
         <item name="colorSecondaryVariant">@color/yellow</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
     <style name="Theme.CykloBazar.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="Theme.CykloBazar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.CykloBazar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 </resources>

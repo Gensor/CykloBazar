@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.gensor.cyklobazar.activities.SignUpActivity">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_signup_top"
         android:layout_width="match_parent"
