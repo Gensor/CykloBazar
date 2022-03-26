@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import com.squareup.picasso.Picasso;
+import kotlinx.android.synthetic.main.activity_main_content.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +33,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         nav_view.setNavigationItemSelectedListener(this)
         FirestoreClass().loginUser(this@MainActivity)
+
     }
 
     override fun onBackPressed() {
@@ -51,6 +53,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.nav_view_main_register -> {
                 startActivity(Intent(this, RegisterActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
                 finish()
+            }
+            R.id.nav_view_main_logout -> {
+                FirestoreClass().signOut()
+
+                //TODO: do samostatnej fun
+                nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_logged, false)
+                nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_sign_out, true)
+                iv_user_image.setImageResource(R.drawable.ic_baseline_person_24)
+                tv_username.text = ""
             }
         }
 

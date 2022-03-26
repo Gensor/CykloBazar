@@ -37,6 +37,7 @@ class FirestoreClass{
                 document ->
                 val loggedUser = document.toObject(User::class.java)!!
                 when(activity){
+                    //TODO: co keby som pouzil strategy pattern activity.login()
                     is LoginActivity -> {activity.loginSuccess()}
                     is MainActivity -> {activity.updateUserInMenu(loggedUser)}
                 }
@@ -51,6 +52,10 @@ class FirestoreClass{
                     }
                 }
             }
+    }
+
+    fun signOut(){
+        FirebaseAuth.getInstance().signOut();
     }
 
     fun getUserId() : String {
