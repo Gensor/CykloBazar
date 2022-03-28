@@ -3,11 +3,12 @@ package com.gensor.cyklobazar.models
 import android.os.Parcel
 import android.os.Parcelable
 
-data class User(val id: String = "",
-                val name: String = "",
-                val email: String = "",
-                val image: String = "",
-                val fcmToken: String = ""): Parcelable {
+data class User(
+    var id: String = "",
+    var name: String = "",
+    var email: String = "",
+    var image: String = "",
+    var fcmToken: String = ""): Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,

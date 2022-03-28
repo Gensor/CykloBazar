@@ -7,7 +7,6 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.TextView
 import com.gensor.cyklobazar.R
-import com.gensor.cyklobazar.firebase.FirestoreClass
 
 class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

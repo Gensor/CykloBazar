@@ -3,24 +3,21 @@ package com.gensor.cyklobazar.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
-import android.widget.Toast
 import com.gensor.cyklobazar.R
-import com.gensor.cyklobazar.firebase.FirestoreClass
-import com.gensor.cyklobazar.models.User
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.gensor.cyklobazar.database.Database
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
-    private lateinit var auth: FirebaseAuth
 
+    private var database : Database? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        auth = Firebase.auth
+
         setupActionBar()
+
+        val bundle = intent.getBundleExtra("bundle")
+        database = bundle?.getParcelable<Database>("database")
 
         button_login.setOnClickListener{
             loginUser()
@@ -47,19 +44,7 @@ class LoginActivity : BaseActivity() {
 
         if (validateForm(email, password)){
             showProgressDialog(resources.getString(R.string.please_wait))
-
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    hideProgressDialog()
-                    if (task.isSuccessful) {
-                        FirestoreClass().loginUser(this)
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("Login", "signInWithEmail:failure", task.exception)
-                        Toast.makeText(baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
-                    }
-                }
+            database?.loginUser(this, email, password)
         }
     }
 
