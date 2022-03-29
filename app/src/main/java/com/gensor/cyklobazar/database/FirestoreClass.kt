@@ -1,6 +1,7 @@
 package com.gensor.cyklobazar.database
 
 import android.app.Activity
+import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
 import android.util.Log
@@ -18,11 +19,14 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+
 
 
 class FirestoreClass() : Database {
     private val fireStore = FirebaseFirestore.getInstance()
     private var auth: FirebaseAuth = Firebase.auth
+    private var profilePictureURL = ""
 
     constructor(parcel: Parcel) : this() {
     }
@@ -115,6 +119,24 @@ class FirestoreClass() : Database {
                 }
         }
     }
+
+    override fun uploadUserImage(uri : Uri, filename : String){
+
+        FirebaseStorage.getInstance().reference.child(filename).putFile(uri)
+            .addOnSuccessListener {
+                    taskSnapshot ->
+                taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener {
+                        uriInStorage ->
+
+                    //TODO: toto updatni v user profile
+                    //toto
+                    uriInStorage.toString()
+                }
+            }
+
+    }
+
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
 

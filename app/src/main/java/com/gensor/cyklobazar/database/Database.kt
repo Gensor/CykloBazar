@@ -1,6 +1,7 @@
 package com.gensor.cyklobazar.database
 
 import android.app.Activity
+import android.net.Uri
 import android.os.Parcelable
 import com.gensor.cyklobazar.activities.LoginActivity
 import com.gensor.cyklobazar.activities.MainActivity
@@ -14,4 +15,5 @@ interface Database : Parcelable{
     fun getUserId() : String
     fun getUser(id : String) : User
     fun loadUser(activity: Activity)
+    fun uploadUserImage(uri : Uri, filename : String)
 }

@@ -7,20 +7,24 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.gensor.cyklobazar.R
 import com.gensor.cyklobazar.database.Database
+import com.gensor.cyklobazar.database.FirestoreClass
 import com.gensor.cyklobazar.models.User
 import com.gensor.cyklobazar.utils.Constants
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_profile.iv_profile_user_image
 
 class ProfileActivity :  BaseActivity() {
 
     private var selectedImageFileUri : Uri? = null
+    private var database : Database? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +40,12 @@ class ProfileActivity :  BaseActivity() {
         }
 
         val bundle = intent.getBundleExtra("bundle")
-        val database = bundle?.getParcelable<Database>("database")
+        database = bundle?.getParcelable<Database>("database")
         database?.loadUser(this)
+
+        button_profile_save.setOnClickListener {
+            database?.let { it1 -> uploadUserImage(it1) }
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -51,7 +59,7 @@ class ProfileActivity :  BaseActivity() {
             && grantResults[0] == PackageManager.PERMISSION_GRANTED){
             imageChooser()
         }else{
-            Toast.makeText(this, "permission denied", Toast.LENGTH_SHORT)
+            Toast.makeText(this, "permission denied", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -107,4 +115,18 @@ class ProfileActivity :  BaseActivity() {
             finish()
         }
     }
+
+    private fun uploadUserImage(database : Database){
+        showProgressDialog(resources.getString(R.string.please_wait))
+        if(selectedImageFileUri != null){
+            val fileName = "PROFILE_IMAGE" + System.currentTimeMillis() + "." + getFileExtension(selectedImageFileUri)
+            database.uploadUserImage(selectedImageFileUri!!, fileName)
+        }
+        hideProgressDialog()
+    }
+
+    private fun getFileExtension(uri : Uri?) : String?{
+        return MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(uri!!))
+    }
+
 }
