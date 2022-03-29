@@ -21,6 +21,10 @@
             android:id="@+id/nav_view_main_add_ad"
             android:icon="@drawable/ic_baseline_login_24"
             android:title="@string/nav_view_add_your_ad" />
+        <item
+            android:id="@+id/nav_view_main_profile"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="@string/nav_view_profile" />
 
         <item
             android:id="@+id/nav_view_main_logout"

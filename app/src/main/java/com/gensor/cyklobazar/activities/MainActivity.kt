@@ -52,12 +52,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
             R.id.nav_view_main_logout -> {
                 database.signOut(this)
-
-                //TODO: do samostatnej fun
-                nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_logged, false)
-                nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_sign_out, true)
-                iv_user_image.setImageResource(R.drawable.ic_baseline_person_24)
-                tv_username.text = ""
+                updateUserInMenu(Session.LOGOUT)
+            }
+            R.id.nav_view_main_profile -> {
+                startActivity(Intent(this, ProfileActivity::class.java)
+                    .putExtra("bundle",bundle)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
+                finish()
             }
         }
 
@@ -78,19 +79,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
-    fun updateUserInMenu(session: Session, user: User?){
+    fun updateUserInMenu(session: Session, user: User = User()){
         when(session){
             Session.LOGIN -> {
-                if (user != null) {
+                if (user.id.isNotEmpty()) {
                     Glide
                         .with(this)
                         .load(user.image)
                         .centerCrop()
                         .placeholder(R.drawable.ic_baseline_person_24)
                         .into(iv_user_image)
-
                     tv_username.text = user.name
-
                     nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_logged, true)
                     nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_sign_out, false)
                 }

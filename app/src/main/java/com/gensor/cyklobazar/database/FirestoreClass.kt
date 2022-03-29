@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.gensor.cyklobazar.activities.LoginActivity
 import com.gensor.cyklobazar.activities.MainActivity
+import com.gensor.cyklobazar.activities.ProfileActivity
 import com.gensor.cyklobazar.activities.RegisterActivity
 import com.gensor.cyklobazar.models.User
 import com.gensor.cyklobazar.utils.Constants
@@ -28,22 +29,22 @@ class FirestoreClass() : Database {
 
     override fun registerUser(activity: RegisterActivity, name : String, email : String, password : String){
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
-
-            if (task.isSuccessful) {
-                val firebaseUser: FirebaseUser = task.result!!.user!!
-                val registeredEmail = firebaseUser.email!!
-                val user = User(firebaseUser.uid, name, registeredEmail)
-                fireStore.collection(Constants.USERS)
-                    .document(getUserId())
-                    .set(user, SetOptions.merge())
-                    .addOnSuccessListener {
-                        activity.userRegisteredSuccess() }
-            } else {
-                Toast.makeText(activity, task.exception!!.message, Toast.LENGTH_SHORT).show()
-                activity.hideProgressDialog()
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val firebaseUser: FirebaseUser = task.result!!.user!!
+                    val registeredEmail = firebaseUser.email!!
+                    val user = User(firebaseUser.uid, name, registeredEmail)
+                    fireStore.collection(Constants.USERS)
+                        .document(getUserId())
+                        .set(user, SetOptions.merge())
+                        .addOnSuccessListener {
+                            activity.userRegisteredSuccess() }
+                } else {
+                    Toast.makeText(activity, task.exception!!.message, Toast.LENGTH_SHORT).show()
+                    activity.hideProgressDialog()
+                }
             }
-        }
     }
 
     override fun loginUser(activity: LoginActivity, email: String, password: String){
@@ -58,7 +59,7 @@ class FirestoreClass() : Database {
                             .addOnSuccessListener { document ->
                                 activity.loginSuccess()
                             }.addOnFailureListener { e ->
-                                        activity.hideProgressDialog()
+                                activity.hideProgressDialog()
                             }
                     }
 
@@ -67,6 +68,7 @@ class FirestoreClass() : Database {
                     Log.w("Login", "signInWithEmail:failure", task.exception)
                     Toast.makeText(activity.baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
+                    activity.hideProgressDialog()
                 }
             }
 
@@ -75,7 +77,7 @@ class FirestoreClass() : Database {
     override fun signOut(activity: MainActivity){
         FirebaseAuth.getInstance().signOut()
         if (getUserId() == ""){
-            activity.updateUserInMenu(Session.LOGOUT,null)
+            activity.updateUserInMenu(Session.LOGOUT)
             Toast.makeText(activity,"you are signed out",Toast.LENGTH_SHORT).show()
         }
     }
@@ -108,6 +110,7 @@ class FirestoreClass() : Database {
                     val loggedUser = document.toObject(User::class.java)!!
                     when(activity){
                         is MainActivity -> activity.updateUserInMenu(Session.LOGIN, loggedUser)
+                        is ProfileActivity -> activity.populateFieldsFromDatabase(loggedUser)
                     }
                 }
         }

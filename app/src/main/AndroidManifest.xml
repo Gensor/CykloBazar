@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gensor.cyklobazar">
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,16 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CykloBazar">
         <activity
+            android:name=".activities.ProfileActivity"
+            android:theme="@style/Theme.CykloBazar.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".activities.BaseActivity"
             android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"
-            android:theme="@style/Theme.CykloBazar.NoActionBar"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.CykloBazar.NoActionBar" />
         <activity
             android:name=".activities.RegisterActivity"
-            android:theme="@style/Theme.CykloBazar.NoActionBar"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.CykloBazar.NoActionBar" />
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true"
@@ -32,8 +37,8 @@
         </activity>
         <activity
             android:name=".activities.MainActivity"
-            android:theme="@style/Theme.CykloBazar.NoActionBar"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.CykloBazar.NoActionBar" />
     </application>
 
 </manifest>

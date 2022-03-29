@@ -15,4 +15,8 @@
 
     <string name="image_contentDescription">image</string>
     <string name="nav_view_add_your_ad">add your ad</string>
+    <string name="nav_view_profile">my profile</string>
+    <string name="profile_toolbar_profile">My profile</string>
+    <string name="profile_photo">Profile photo</string>
+    <string name="save">Save</string>
 </resources>
