@@ -24,6 +24,9 @@ class LoginActivity : BaseActivity() {
         }
     }
 
+    /*
+    Nastavenie toolbaru s funkciou späť.
+     */
     private fun setupActionBar(){
         setSupportActionBar(toolbar_login_top)
         val actionBar = supportActionBar
@@ -38,6 +41,9 @@ class LoginActivity : BaseActivity() {
         }
     }
 
+    /*
+    Prihlásenie používateľa.
+     */
     private fun loginUser(){
         val email : String = editTextTextEmailAddress_login.text.toString().trim()
         val password : String = editTextTextPassword_login.text.toString()
@@ -48,6 +54,9 @@ class LoginActivity : BaseActivity() {
         }
     }
 
+    /*
+    Overenie, či sú prihlasovacie údaje kompletné.
+     */
     private fun validateForm(email: String, password: String): Boolean{
         return when {
             TextUtils.isEmpty(email) -> {
@@ -62,6 +71,9 @@ class LoginActivity : BaseActivity() {
         }
     }
 
+    /*
+    Metóda sa spustí po úspešnom prihlásení používateľa.
+     */
     fun loginSuccess() {
         hideProgressDialog()
         startActivity(Intent(this, MainActivity::class.java))

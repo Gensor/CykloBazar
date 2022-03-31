@@ -14,10 +14,8 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.gensor.cyklobazar.R
 import com.gensor.cyklobazar.database.Database
-import com.gensor.cyklobazar.database.FirestoreClass
 import com.gensor.cyklobazar.models.User
 import com.gensor.cyklobazar.utils.Constants
-import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_profile.iv_profile_user_image
 
@@ -48,6 +46,9 @@ class ProfileActivity :  BaseActivity() {
         }
     }
 
+    /*
+    Pred použitím metódy výberu obrázka potrebujem povolenie od používateľa.
+     */
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -63,6 +64,9 @@ class ProfileActivity :  BaseActivity() {
         }
     }
 
+    /*
+    Metóda sa používa na výber obrázka zo zariadenia.
+     */
     private fun imageChooser(){
         val getIntent =  Intent(Intent.ACTION_GET_CONTENT)
         getIntent.setType("image/*");
@@ -76,6 +80,9 @@ class ProfileActivity :  BaseActivity() {
         startActivityForResult(chooserIntent, Constants.PICK_IMAGE_CODE)
     }
 
+    /*
+    Po úspešnom výbere obrázka sa obrázok aktualizuje v activity_profile -> iv_profile_user_image.
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == Constants.PICK_IMAGE_CODE && data!!.data != null){
@@ -90,18 +97,24 @@ class ProfileActivity :  BaseActivity() {
         }
     }
 
+    /*
+    Metóda volaná z triedy databázy, ktorá vyplní textové polia údajmi prihláseného používateľa.
+     */
     fun populateFieldsFromDatabase(user : User) {
         Glide
             .with(this)
             .load(user.image)
             .centerCrop()
-            .placeholder(R.drawable.ic_baseline_person_24)
+            .placeholder(resources.getDrawable(R.drawable.ic_baseline_person_24,theme))
             .into(iv_profile_user_image)
         et_profile_name.setText(user.name)
         et_profile_email.setText(user.email)
 
     }
 
+    /*
+    Nastavenie toolbaru s funkciou späť.
+     */
     private fun setupActionBar(){
         setSupportActionBar(toolbar_profile_top)
         val actionBar = supportActionBar
@@ -116,17 +129,20 @@ class ProfileActivity :  BaseActivity() {
         }
     }
 
+    /*
+    Pomenuje obrázok zo zariadenia a uloží ho do databázy.
+     */
     private fun uploadUserImage(database : Database){
         showProgressDialog(resources.getString(R.string.please_wait))
         if(selectedImageFileUri != null){
-            val fileName = "PROFILE_IMAGE" + System.currentTimeMillis() + "." + getFileExtension(selectedImageFileUri)
+            val fileName = "PROFILE_IMAGE" + System.currentTimeMillis() + "." + Constants.getFileExtension(this, selectedImageFileUri)
             database.uploadUserImage(selectedImageFileUri!!, fileName)
+            database.loadUser(this)
         }
         hideProgressDialog()
     }
 
-    private fun getFileExtension(uri : Uri?) : String?{
-        return MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(uri!!))
-    }
+
+
 
 }

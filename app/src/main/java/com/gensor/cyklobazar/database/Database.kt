@@ -13,7 +13,6 @@ interface Database : Parcelable{
     fun loginUser(activity: LoginActivity, email: String, password: String)
     fun signOut(activity: MainActivity)
     fun getUserId() : String
-    fun getUser(id : String) : User
     fun loadUser(activity: Activity)
     fun uploadUserImage(uri : Uri, filename : String)
 }

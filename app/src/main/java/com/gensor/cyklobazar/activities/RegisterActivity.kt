@@ -24,6 +24,9 @@ class RegisterActivity : BaseActivity() {
 
     }
 
+    /*
+    Nastavenie toolbaru s funkciou späť.
+     */
     private fun setupActionBar(){
         setSupportActionBar(toolbar_register)
         val actionBar = supportActionBar
@@ -38,6 +41,9 @@ class RegisterActivity : BaseActivity() {
         }
     }
 
+    /*
+    Overenie, či sú informácie pre registráciu vyplnené.
+     */
     private fun validateForm(name: String, email: String, password: String): Boolean{
         return when {
             TextUtils.isEmpty(name) -> {
@@ -55,6 +61,9 @@ class RegisterActivity : BaseActivity() {
         }
     }
 
+    /*
+    Po overení údajov používateľa ho zaregistruje do databázy.
+     */
     private fun registerUser(){
         val name: String = editTextTextPersonName_register.text.toString().trim()
         val email: String = editTextTextEmailAddress_register.text.toString().trim()
@@ -65,6 +74,10 @@ class RegisterActivity : BaseActivity() {
             database?.registerUser(this, name, email, password)
         }
     }
+    /*
+    Keď sa používateľ úspešne zaregistruje , potvrdí sa registrácia textom na obrazovke a prepne
+    ma do MainActivity.
+     */
     fun userRegisteredSuccess(){
         Toast.makeText(
             this, "succesfully registered",

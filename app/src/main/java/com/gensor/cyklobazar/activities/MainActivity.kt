@@ -1,6 +1,9 @@
 package com.gensor.cyklobazar.activities
 
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
@@ -12,8 +15,10 @@ import com.gensor.cyklobazar.models.User
 import com.gensor.cyklobazar.utils.Session
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
+import java.io.File
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     val database : Database = FirestoreClass()
@@ -34,6 +39,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
+    /*
+    Funkcie všetkých tlačidiel bočného menu.
+     */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val bundle = Bundle()
         bundle.putParcelable("database",database)
@@ -66,6 +74,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return true
     }
 
+    /*
+    Nastavenie toolbaru s funkciou otvárania bočného menu.
+     */
     private fun setupActionBar(){
         setSupportActionBar(toolbar_main_activity)
         val actionBar = supportActionBar
@@ -79,15 +90,24 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
+    /*
+    Zobrazí bočné menu v závislosti od toho, či je používateľ prihlásený alebo nie.
+     */
     fun updateUserInMenu(session: Session, user: User = User()){
         when(session){
             Session.LOGIN -> {
                 if (user.id.isNotEmpty()) {
+                    val storage = FirebaseStorage.getInstance()
+                    val httpsReference = storage.getReferenceFromUrl(
+                        "https://firebasestorage.googleapis.com/v0/b/cyklobazar-285ff.appspot.com/o/PROFILE_IMAGE1648660076154.png?alt=media&token=efbe651f-a76a-46e0-8e01-7f2a453c5713")
+                    val file = File.createTempFile("tempProfile", ".png")
+                    httpsReference.getFile(file)
+
                     Glide
                         .with(this)
-                        .load(user.image)
+                        .load(file)
                         .centerCrop()
-                        .placeholder(R.drawable.ic_baseline_person_24)
+                        .placeholder(resources.getDrawable( R.drawable.ic_baseline_person_24, theme))
                         .into(iv_user_image)
                     tv_username.text = user.name
                     nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_logged, true)
