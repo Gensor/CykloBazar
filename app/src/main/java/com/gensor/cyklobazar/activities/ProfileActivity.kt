@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -29,6 +28,10 @@ class ProfileActivity :  BaseActivity() {
         setContentView(R.layout.activity_profile)
         setupActionBar()
 
+        val bundle = intent.getBundleExtra("bundle")
+        database = bundle?.getParcelable<Database>("database")
+        database?.loadUser(this)
+
         iv_profile_user_image.setOnClickListener {
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
                 imageChooser()
@@ -37,9 +40,6 @@ class ProfileActivity :  BaseActivity() {
             }
         }
 
-        val bundle = intent.getBundleExtra("bundle")
-        database = bundle?.getParcelable<Database>("database")
-        database?.loadUser(this)
 
         button_profile_save.setOnClickListener {
             database?.let { it1 -> uploadUserImage(it1) }
@@ -135,7 +135,9 @@ class ProfileActivity :  BaseActivity() {
     private fun uploadUserImage(database : Database){
         showProgressDialog(resources.getString(R.string.please_wait))
         if(selectedImageFileUri != null){
-            val fileName = "PROFILE_IMAGE" + System.currentTimeMillis() + "." + Constants.getFileExtension(this, selectedImageFileUri)
+            val fileName = "PROFILE_IMAGE" + System.currentTimeMillis()
+           /* + "."
+            + Constants.getFileExtension(this, selectedImageFileUri)*/
             database.uploadUserImage(selectedImageFileUri!!, fileName)
             database.loadUser(this)
         }

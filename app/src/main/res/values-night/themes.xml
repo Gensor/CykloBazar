@@ -3,8 +3,7 @@
     <style name="Theme.CykloBazar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_dark</item>
-        <item name="colorPrimaryVariant">@color/blue_light</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/orange</item>

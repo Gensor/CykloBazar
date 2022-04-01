@@ -1,9 +1,5 @@
 package com.gensor.cyklobazar.utils
 
-import android.app.Activity
-import android.net.Uri
-import android.webkit.MimeTypeMap
-
 object Constants {
     //database
     const val USERS: String = "users"
@@ -19,8 +15,8 @@ object Constants {
     /*
     získanie prípony súboru
      */
-    fun getFileExtension(activity: Activity, uri: Uri?): String? {
+    /*fun getFileExtension(activity: Activity, uri: Uri?): String? {
         return MimeTypeMap.getSingleton()
             .getExtensionFromMimeType(activity.contentResolver.getType(uri!!))
-    }
+    }*/
 }
