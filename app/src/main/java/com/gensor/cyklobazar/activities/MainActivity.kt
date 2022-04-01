@@ -67,6 +67,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
                 finish()
             }
+            R.id.nav_view_main_add_ad -> {
+                startActivity(Intent(this, AdActivity::class.java)
+                    .putExtra("bundle",bundle)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
+                finish()
+            }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)

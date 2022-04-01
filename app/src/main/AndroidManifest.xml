@@ -14,9 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CykloBazar">
         <activity
-            android:name=".activities.ProfileActivity"
-            android:theme="@style/Theme.CykloBazar.NoActionBar"
+            android:name=".activities.AdActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CykloBazar.NoActionBar" />
         <activity
             android:name=".activities.BaseActivity"
             android:exported="false" />

@@ -14,10 +14,10 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        setupActionBar()
 
         val bundle = intent.getBundleExtra("bundle")
         database = bundle?.getParcelable<Database>("database")
+        setupActionBar()
 
         button_login.setOnClickListener{
             loginUser()
