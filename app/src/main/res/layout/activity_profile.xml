@@ -23,9 +23,9 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_profile_user_image"
-        android:layout_width="@dimen/nav_image_size"
-        android:layout_height="@dimen/nav_image_size"
-        android:layout_marginTop="72dp"
+        android:layout_width="@dimen/activity_profile_image_size_profile"
+        android:layout_height="@dimen/activity_profile_image_size_profile"
+        android:layout_marginTop="32dp"
         android:contentDescription="@string/image_contentDescription"
         android:src="@drawable/ic_baseline_person_24"
         app:civ_border_color="@android:color/white"
@@ -61,11 +61,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="40dp"
         android:text="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/tv_profile_email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_profile_top"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile_user_image"
         app:layout_constraintVertical_bias="0.678" />
 
     <EditText
@@ -73,13 +73,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toEndOf="@+id/tv_profile_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_profile_photo" />
 
@@ -87,7 +87,6 @@
         android:id="@+id/et_profile_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"

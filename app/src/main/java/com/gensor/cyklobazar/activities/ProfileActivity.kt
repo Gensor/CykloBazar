@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.gensor.cyklobazar.R
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.models.User
@@ -91,6 +92,7 @@ class ProfileActivity :  BaseActivity() {
             Glide
                 .with(this)
                 .load(selectedImageFileUri)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .placeholder(R.drawable.ic_baseline_person_24)
                 .into(iv_profile_user_image)

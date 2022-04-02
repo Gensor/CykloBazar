@@ -1,22 +1,50 @@
 <resources>
     <string name="app_name">CykloBazar</string>
-    <string name="login">login</string>
+    <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="name">Name</string>
-    <string name="register_button">register</string>
-    <string name="register_toolbar_register">register</string>
-    <string name="login_button">login</string>
-    <string name="login_toolbar_login">login</string>
-    <string name="please_wait">please wait</string>
+    <string name="register_button">Register</string>
+    <string name="register_toolbar_register">Register</string>
+    <string name="please_wait">Please wait</string>
     <string name="please_click_back_againt_to_exit">Please click back again to exit</string>
-    <string name="nav_log_out">log out</string>
+    <string name="nav_log_out">Log out</string>
     <string name="nav_my_profile">Profile</string>
 
-    <string name="image_contentDescription">image</string>
-    <string name="nav_view_add_your_ad">add your ad</string>
-    <string name="nav_view_profile">my profile</string>
+    <string name="image_contentDescription">Image</string>
+    <string name="nav_view_add_your_ad">Add your ad</string>
+    <string name="nav_view_profile">My profile</string>
     <string name="profile_toolbar_profile">My profile</string>
-    <string name="profile_photo">Profile photo</string>
+    <string name="profile_photo">Tap to change</string>
     <string name="save">Save</string>
+    <string name="ad_toolbar_ad">Create Ad</string>
+    <string name="brand">Brand:</string>
+    <string name="model">Model</string>
+    <string name="year">Year</string>
+    <string name="batteryCapacity">Battery Capacity</string>
+    <string name="kw">Kw</string>
+    <string name="motor">Motor</string>
+    <string name="price">Price</string>
+    <string name="groupSet">Group Set</string>
+    <string name="roadBikeSize">Size</string>
+    <string name="dropper_post">Dropper post</string>
+    <string name="wheel_size">Wheel Size</string>
+    <string name="fork">Fork</string>
+    <string name="travel">Travel</string>
+
+    <string-array name="ad_productCategory_spinner">
+        <item name="bikes" type="string">Bikes</item>
+        <item name="parts" type="string">Parts</item>
+    </string-array>
+    <string-array name="ad_bikeCategory_spinner">
+        <item name="eBike" type="string">Electric bicycle</item>
+        <item name="roadBike" type="string">Road bicycle</item>
+        <item name="mountainBike" type="string">Mountain bicycle</item>
+    </string-array>
+    <string-array name="ad_partsCategory_spinner">
+        <item name="fork">Fork</item>
+        <item name="wheels" type="string">Wheels</item>
+    </string-array>
+
+
 </resources>

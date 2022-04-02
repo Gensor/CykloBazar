@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.gensor.cyklobazar.R
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.database.FirestoreClass
@@ -106,6 +107,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     Glide
                         .with(this)
                         .load(user.image)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .centerCrop()
                         .placeholder(resources.getDrawable(R.drawable.ic_baseline_person_24,theme))
                         .into(iv_user_image)
