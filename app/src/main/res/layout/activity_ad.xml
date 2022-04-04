@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AdActivity">
+    tools:context=".activities.Ad.AdActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_ad_top"
@@ -677,6 +677,124 @@
                             android:layout_weight="0.2"/>
                         <EditText
                             android:id="@+id/et_ad_parts_fork_price"
+                            android:inputType="numberDecimal"
+                            android:layout_weight="0.80"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            //wheels
+            <LinearLayout
+                android:id="@+id/linearLayout_adActivity_parts_wheel"
+                android:layout_width="match_parent"
+                android:visibility= "gone"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ad_linearlayout_product_field_padding"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_ad_parts_wheel_brand"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="@string/brand"
+                            />
+                        <EditText
+                            android:id="@+id/et_ad_parts_wheel_brand"
+                            android:layout_weight="0.80"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ad_linearlayout_product_field_padding"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_ad_parts_wheel_model"
+                            android:text="@string/model"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="0.2"/>
+                        <EditText
+                            android:id="@+id/et_ad_parts_wheel_model"
+                            android:layout_weight="0.80"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ad_linearlayout_product_field_padding"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_ad_parts_wheel_size"
+                            android:text="@string/wheel_size"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="0.2"/>
+                        <EditText
+                            android:id="@+id/et_ad_parts_wheel_size"
+                            android:layout_weight="0.80"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ad_linearlayout_product_field_padding"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_ad_parts_wheel_material"
+                            android:text="@string/material"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="0.2"/>
+                        <EditText
+                            android:id="@+id/et_ad_parts_wheel_material"
+                            android:layout_weight="0.80"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ad_linearlayout_product_field_padding"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_ad_parts_wheel_price"
+                            android:text="@string/price"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="0.2"/>
+                        <EditText
+                            android:id="@+id/et_ad_parts_wheel_price"
                             android:inputType="numberDecimal"
                             android:layout_weight="0.80"
                             android:layout_width="wrap_content"

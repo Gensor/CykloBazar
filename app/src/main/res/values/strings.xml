@@ -31,6 +31,7 @@
     <string name="wheel_size">Wheel Size</string>
     <string name="fork">Fork</string>
     <string name="travel">Travel</string>
+    <string name="material">Material</string>
 
     <string-array name="ad_productCategory_spinner">
         <item name="bikes" type="string">Bikes</item>

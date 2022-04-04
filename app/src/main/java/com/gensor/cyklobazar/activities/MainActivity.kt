@@ -1,15 +1,13 @@
 package com.gensor.cyklobazar.activities
 
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.gensor.cyklobazar.R
+import com.gensor.cyklobazar.activities.Ad.AdActivity
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.database.FirestoreClass
 import com.gensor.cyklobazar.models.User
@@ -18,14 +16,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
-import java.io.File
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-    val database : Database = FirestoreClass()
+   private lateinit var database : Database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        database = FirestoreClass()
         setupActionBar()
         database.loadUser(this)
         nav_view.setNavigationItemSelectedListener(this)

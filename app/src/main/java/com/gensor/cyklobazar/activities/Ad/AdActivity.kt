@@ -1,19 +1,35 @@
-package com.gensor.cyklobazar.activities
+package com.gensor.cyklobazar.activities.Ad
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.core.view.allViews
 import com.gensor.cyklobazar.R
+import com.gensor.cyklobazar.activities.BaseActivity
+import com.gensor.cyklobazar.activities.MainActivity
 import kotlinx.android.synthetic.main.activity_ad.*
 
 class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
-    private var productCategorySelected = ""
-    private var bikeCategorySelected = ""
-    private var partsCategorySelected = ""
     private lateinit var spinner_productCategory : Spinner
     private lateinit var spinner_bikeCategory : Spinner
     private lateinit var spinner_partsCategory : Spinner
+    private var productCategorySelected = ""
+    private var bikeCategorySelected = ""
+    private var partsCategorySelected = ""
+
+    //observer pre formulare
+    private val formViewManager = ViewVisibilityManager()
+    private lateinit var ebikeForm : ViewVisibility
+    private lateinit var roadBikeForm : ViewVisibility
+    private lateinit var mountainBikeForm : ViewVisibility
+    private lateinit var forkForm : ViewVisibility
+    private lateinit var wheelForm : ViewVisibility
+
+    //observer pre spinnery
+    private val spinnerViewManager = ViewVisibilityManager()
+    private  lateinit var bikeSpinnerView : ViewVisibility
+    private  lateinit var partsSpinnerView : ViewVisibility
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +38,16 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
         initCategorySpinner()
         initBikeCategorySpinner()
         initPartsCategorySpinner()
+
+        ebikeForm = ViewVisibility(linearLayout_adActivity_bikes_eBike, formViewManager)
+        roadBikeForm = ViewVisibility(linearLayout_adActivity_bikes_roadBike, formViewManager)
+        mountainBikeForm = ViewVisibility(linearLayout_adActivity_bikes_mountainBike, formViewManager)
+        forkForm = ViewVisibility(linearLayout_adActivity_parts_fork, formViewManager)
+        wheelForm = ViewVisibility(linearLayout_adActivity_parts_wheel, formViewManager)
+
+        bikeSpinnerView = ViewVisibility(spinner_bikeCategory, spinnerViewManager)
+        partsSpinnerView = ViewVisibility(spinner_partsCategory, spinnerViewManager)
+
     }
 
     /*
@@ -55,6 +81,8 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             spinner_productCategory.adapter = adapter
         }
         spinner_productCategory.onItemSelectedListener = this
+        productCategorySelected = spinner_productCategory.setSelection(0).toString()
+
     }
 
     /*
@@ -69,6 +97,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             spinner_bikeCategory.adapter = adapter
         }
         spinner_bikeCategory.onItemSelectedListener = this
+        bikeCategorySelected = spinner_bikeCategory.setSelection(0).toString()
     }
 
 
@@ -84,6 +113,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             spinner_partsCategory.adapter = adapter
         }
         spinner_partsCategory.onItemSelectedListener = this
+        partsCategorySelected = spinner_partsCategory.setSelection(0).toString()
     }
 
     /*
@@ -95,15 +125,13 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             spinner_productCategory -> {
                 when(productCategorySelected){
                     "Parts" -> {
-                        spinner_bikeCategory.visibility = View.GONE
-                        spinner_partsCategory.visibility = View.VISIBLE
-                        setCardVisibility(linearLayout_adActivity_parts_fork)
+                        spinnerViewManager.visibleView = partsSpinnerView
+                        formViewManager.visibleView = forkForm
                         spinner_partsCategory.setSelection(0)
                     }
                     "Bikes"-> {
-                        spinner_bikeCategory.visibility = View.VISIBLE
-                        spinner_partsCategory.visibility = View.GONE
-                        setCardVisibility(linearLayout_adActivity_bikes_eBike)
+                        spinnerViewManager.visibleView = bikeSpinnerView
+                        formViewManager.visibleView = ebikeForm
                         spinner_bikeCategory.setSelection(0)
                     }
                 }
@@ -112,13 +140,13 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
                 bikeCategorySelected = spinner_bikeCategory.selectedItem.toString()
                 when(bikeCategorySelected){
                     "Electric bicycle" -> {
-                        setCardVisibility(linearLayout_adActivity_bikes_eBike)
+                        formViewManager.visibleView = ebikeForm
                     }
                     "Road bicycle" -> {
-                        setCardVisibility(linearLayout_adActivity_bikes_roadBike)
+                        formViewManager.visibleView = roadBikeForm
                     }
                     "Mountain bicycle" -> {
-                        setCardVisibility(linearLayout_adActivity_bikes_mountainBike)
+                        formViewManager.visibleView = mountainBikeForm
                     }
                 }
             }
@@ -126,27 +154,14 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
                 partsCategorySelected = spinner_partsCategory.selectedItem.toString()
                 when(partsCategorySelected){
                     "Fork" -> {
-                        setCardVisibility(linearLayout_adActivity_parts_fork)
+                        formViewManager.visibleView = forkForm
                     }
-                //TODO: pridat tovar
+                    "Wheels" -> {
+                        formViewManager.visibleView = wheelForm
+                    }
                 }
             }
         }
-    }
-
-    /*
-    Funkcia vie zobraziť iba jeden formulár a skryť ostatné.
-     */
-    private fun setCardVisibility(layout : LinearLayout){
-        val layouts  = ArrayList<LinearLayout>()
-
-        layouts.add(linearLayout_adActivity_bikes_eBike)
-        layouts.add(linearLayout_adActivity_bikes_roadBike)
-        layouts.add(linearLayout_adActivity_bikes_mountainBike)
-        layouts.add(linearLayout_adActivity_parts_fork)
-
-        layout.visibility = View.VISIBLE
-        layouts.map { if(it != layout) it.visibility = View.GONE }
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

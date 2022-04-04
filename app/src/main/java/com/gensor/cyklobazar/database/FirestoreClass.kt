@@ -18,7 +18,6 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 
-
 class FirestoreClass() : Database {
     private val fireStore = FirebaseFirestore.getInstance()
     private var auth: FirebaseAuth = Firebase.auth
@@ -26,12 +25,18 @@ class FirestoreClass() : Database {
     constructor(parcel: Parcel) : this() {
     }
 
+
     /*
     Registrácia užívateľa.
      */
-    override fun registerUser(activity: RegisterActivity, name : String, email : String, password : String){
+    override fun registerUser(
+        activity: RegisterActivity,
+        name: String,
+        email: String,
+        password: String
+    ) {
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val firebaseUser: FirebaseUser = task.result!!.user!!
@@ -41,7 +46,8 @@ class FirestoreClass() : Database {
                         .document(getUserId())
                         .set(user, SetOptions.merge())
                         .addOnSuccessListener {
-                            activity.userRegisteredSuccess() }
+                            activity.userRegisteredSuccess()
+                        }
                 } else {
                     Toast.makeText(activity, task.exception!!.message, Toast.LENGTH_SHORT).show()
                     activity.hideProgressDialog()
@@ -52,7 +58,7 @@ class FirestoreClass() : Database {
     /*
     Prihlásenie užívateľa.
      */
-    override fun loginUser(activity: LoginActivity, email: String, password: String){
+    override fun loginUser(activity: LoginActivity, email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(activity) { task ->
                 if (task.isSuccessful) {
@@ -71,8 +77,10 @@ class FirestoreClass() : Database {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("Login", "signInWithEmail:failure", task.exception)
-                    Toast.makeText(activity.baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activity.baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     activity.hideProgressDialog()
                 }
             }
@@ -82,34 +90,25 @@ class FirestoreClass() : Database {
     /*
     Odhlásenie užívateľa.
      */
-    override fun signOut(activity: MainActivity){
+    override fun signOut(activity: MainActivity) {
         FirebaseAuth.getInstance().signOut()
-        if (getUserId() == ""){
+        if (getUserId() == "") {
             activity.updateUserInMenu(Session.LOGOUT)
-            Toast.makeText(activity,"you are signed out",Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "you are signed out", Toast.LENGTH_SHORT).show()
         }
     }
 
     /*
     ID prihláseného užívateľa.
      */
-    override fun getUserId() : String {
+    override fun getUserId(): String {
         val user = FirebaseAuth.getInstance().currentUser
         var userId = ""
-        if (user != null){
+        if (user != null) {
             userId = user.uid
         }
         return userId
     }
-
-    /*
-     fun getUser(id : String) : User{
-          var user = User()
-          fireStore.collection(Constants.USERS).document(id)
-              .get()
-              .addOnSuccessListener { document -> user = document.toObject(User::class.java)!! }
-          return user
-      }*/
 
     /*
     Vyplní údaje prihláseného užívateľa v aktivite.
@@ -117,13 +116,13 @@ class FirestoreClass() : Database {
     override fun loadUser(activity: Activity) {
         val firebaseUser = FirebaseAuth.getInstance().currentUser
 
-        if (firebaseUser != null){
+        if (firebaseUser != null) {
             fireStore.collection(Constants.USERS)
                 .document(firebaseUser.uid)
                 .get()
                 .addOnSuccessListener { document ->
                     val loggedUser = document.toObject(User::class.java)!!
-                    when(activity){
+                    when (activity) {
                         is MainActivity -> activity.updateUserInMenu(Session.LOGIN, loggedUser)
                         is ProfileActivity -> activity.populateFieldsFromDatabase(loggedUser)
                     }
@@ -134,20 +133,19 @@ class FirestoreClass() : Database {
     /*
     Uloží profilový obrázok do cloudového úložiska a odkaz do databázy.
      */
-    override fun uploadUserImage(uri : Uri, filename : String){
+    override fun uploadUserImage(uri: Uri, filename: String) {
 
-        FirebaseStorage.getInstance().reference.child(Constants.PROFILE_PICTURES+filename).putFile(uri)
-            .addOnSuccessListener {
-                    taskSnapshot ->
+        FirebaseStorage.getInstance().reference.child(Constants.PROFILE_PICTURES + filename)
+            .putFile(uri)
+            .addOnSuccessListener { taskSnapshot ->
                 taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener { uriInStorage ->
                     fireStore.collection(Constants.USERS)
                         .document(getUserId())
-                        .update(Constants.USER_IMAGE,uriInStorage.toString())
+                        .update(Constants.USER_IMAGE, uriInStorage.toString())
                 }
             }
 
     }
-
 
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

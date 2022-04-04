@@ -147,6 +147,7 @@ class ProfileActivity :  BaseActivity() {
     }
 
 
+    //TODO: update profil (meno, email, .....)
 
 
 }

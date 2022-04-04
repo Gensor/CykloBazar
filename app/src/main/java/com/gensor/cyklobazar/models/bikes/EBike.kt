@@ -40,4 +40,5 @@ data class EBike (
             return arrayOfNulls(size)
         }
     }
+
 }

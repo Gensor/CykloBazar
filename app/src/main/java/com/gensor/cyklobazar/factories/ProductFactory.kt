@@ -1,18 +1,27 @@
 package com.gensor.cyklobazar.factories
 
+import android.content.Context
+import android.widget.TextView
 import com.gensor.cyklobazar.models.Product
-import com.gensor.cyklobazar.utils.Enums
+import com.gensor.cyklobazar.models.bikes.EBike
+import kotlinx.android.synthetic.main.activity_ad.*
 
-class ProductFactory {
- /*   fun createProduct(product: Enums.ProductCategory) : Product{
-        when(product){
-            Enums.ProductCategory.BIKE -> {
-                println("dafafadf")
+import com.gensor.cyklobazar.R
+
+object ProductFactory {
+
+
+    fun createProduct(product: Product) {
+    //TODO : factory na formulare z kazdeho , vstup == roadBike , wheel, fork, electric bike, ... + data
+   /*     when(product){
+            is EBike -> {
+                val brand : TextView =
+                return EBike()
             }
-            Enums.ProductCategory.PARTS -> {
+            is  -> {
 
             }
-        }
+        }*/
     }
-*/
+
 }
