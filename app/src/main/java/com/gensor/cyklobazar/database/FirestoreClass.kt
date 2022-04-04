@@ -144,7 +144,24 @@ class FirestoreClass() : Database {
                         .update(Constants.USER_IMAGE, uriInStorage.toString())
                 }
             }
+    }
 
+    /*
+    Aktualizovať profil používateľa.
+     */
+    override fun updateUser(activity: ProfileActivity, userHashMap : HashMap<String, Any>){
+        fireStore.collection(Constants.USERS)
+            .document(getUserId())
+            .update(userHashMap)
+            .addOnSuccessListener {
+                Log.i(activity.javaClass.simpleName, "updated successfully")
+                Toast.makeText(activity, "updated successfully", Toast.LENGTH_SHORT).show()
+                loadUser(activity)
+            }.addOnFailureListener {
+                    error -> activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "error updating")
+                Toast.makeText(activity, "error updating", Toast.LENGTH_SHORT).show()
+            }
     }
 
 

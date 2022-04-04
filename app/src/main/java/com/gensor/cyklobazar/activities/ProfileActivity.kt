@@ -23,6 +23,8 @@ class ProfileActivity :  BaseActivity() {
 
     private var selectedImageFileUri : Uri? = null
     private var database : Database? = null
+    private lateinit var loggedUser : User
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +45,7 @@ class ProfileActivity :  BaseActivity() {
 
 
         button_profile_save.setOnClickListener {
-            database?.let { it1 -> uploadUserImage(it1) }
+            profileUpdate()
         }
     }
 
@@ -70,13 +72,13 @@ class ProfileActivity :  BaseActivity() {
      */
     private fun imageChooser(){
         val getIntent =  Intent(Intent.ACTION_GET_CONTENT)
-        getIntent.setType("image/*");
+        getIntent.setType("image/*")
 
-        val pickIntent = Intent(Intent.ACTION_PICK);
-        pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+        val pickIntent = Intent(Intent.ACTION_PICK)
+        pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*")
 
-        val chooserIntent = Intent.createChooser(getIntent, "Select Image");
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(pickIntent));
+        val chooserIntent = Intent.createChooser(getIntent, "Select Image")
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(pickIntent))
 
         startActivityForResult(chooserIntent, Constants.PICK_IMAGE_CODE)
     }
@@ -103,6 +105,7 @@ class ProfileActivity :  BaseActivity() {
     Metóda volaná z triedy databázy, ktorá vyplní textové polia údajmi prihláseného používateľa.
      */
     fun populateFieldsFromDatabase(user : User) {
+        loggedUser = user
         Glide
             .with(this)
             .load(user.image)
@@ -135,19 +138,32 @@ class ProfileActivity :  BaseActivity() {
     Pomenuje obrázok zo zariadenia a uloží ho do databázy.
      */
     private fun uploadUserImage(database : Database){
-        showProgressDialog(resources.getString(R.string.please_wait))
-        if(selectedImageFileUri != null){
             val fileName = "PROFILE_IMAGE" + System.currentTimeMillis()
-           /* + "."
-            + Constants.getFileExtension(this, selectedImageFileUri)*/
             database.uploadUserImage(selectedImageFileUri!!, fileName)
-            database.loadUser(this)
-        }
-        hideProgressDialog()
     }
 
+    /*
+    Aktualizuje údaje používateľa, ak sa nejaké zmenili.
+     */
+    fun profileUpdate(){
+        val user = HashMap<String, Any>()
+        var anyChange = false
+        if(et_profile_name.text.toString() != loggedUser.name){
+            user[Constants.USER_NAME] = et_profile_name.text.toString()
+            anyChange = true
+        }
+        if(et_profile_email.text.toString() != loggedUser.email){
+            user[Constants.USER_EMAIL] = et_profile_email.text.toString()
+            anyChange = true
+        }
+        if(selectedImageFileUri != null ) {
+            anyChange = true
+            database?.let { uploadUserImage(it) }
+        }
 
-    //TODO: update profil (meno, email, .....)
+        if (anyChange == true)
+        database?.updateUser(this, user)
+    }
 
 
 }

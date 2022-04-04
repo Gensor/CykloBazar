@@ -4,6 +4,8 @@ object Constants {
     //database
     const val USERS: String = "users"
     const val USER_IMAGE : String = "image"
+    const val USER_NAME : String = "name"
+    const val USER_EMAIL : String = "email"
 
     //storage
     const val PROFILE_PICTURES : String = "profile_photos/"
