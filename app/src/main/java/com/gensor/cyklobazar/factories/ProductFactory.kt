@@ -1,27 +1,64 @@
 package com.gensor.cyklobazar.factories
 
-import android.content.Context
-import android.widget.TextView
-import com.gensor.cyklobazar.models.Product
 import com.gensor.cyklobazar.models.bikes.EBike
-import kotlinx.android.synthetic.main.activity_ad.*
-
-import com.gensor.cyklobazar.R
+import com.gensor.cyklobazar.models.bikes.MountainBike
+import com.gensor.cyklobazar.models.bikes.RoadBike
+import com.gensor.cyklobazar.models.parts.Fork
+import com.gensor.cyklobazar.models.parts.Wheel
 
 object ProductFactory {
 
 
-    fun createProduct(product: Product) {
-    //TODO : factory na formulare z kazdeho , vstup == roadBike , wheel, fork, electric bike, ... + data
-   /*     when(product){
-            is EBike -> {
-                val brand : TextView =
-                return EBike()
-            }
-            is  -> {
-
-            }
-        }*/
+    fun getEbike(data : HashMap<String, Any>) : EBike{
+        val bike = EBikeBuilder.Builder()
+            .brand(data["brand"] as String)
+            .model(data["model"] as String)
+            .year(data["year"] as Int)
+            .price(data["price"] as Long)
+            .motor(data["motor"] as String)
+            .kw(data["kw"] as Int)
+            .batteryCapacity(data["batteryCapacity"] as Int)
+            .userId(data["userId"] as String)
+            .build()
+        return bike
     }
+
+    fun getMountainBike(data : HashMap<String, Any>) = MountainBike(
+        brand = data["brand"] as String,
+        model = data["model"] as String,
+        year= data["year"] as Int,
+        price = data["price"] as Long,
+        fork = data["fork"] as String,
+        wheelSize = data["wheelSize"] as String,
+        dropperPost = data["dropperPost"] as Boolean,
+        userId = data["userId"] as String
+    )
+
+    fun getRoadBike(data : HashMap<String, Any>) = RoadBike(
+        brand = data["brand"] as String,
+        model = data["model"] as String,
+        year = data["year"] as Int,
+        price = data["price"] as Long,
+        groupSet = data["groupSet"] as String,
+        size = data["size"] as String,
+        userId = data["userId"] as String
+    )
+
+    fun getFork(data : HashMap<String, Any>) = Fork(
+        brand = data["brand"] as String,
+        model = data["model"] as String,
+        travel = data["travel"] as Int,
+        price = data["price"] as Long,
+        userId = data["userId"] as String
+    )
+
+    fun getWheel(data : HashMap<String, Any>) = Wheel(
+        brand = data["brand"] as String,
+        model = data["model"] as String,
+        size = data["size"] as String,
+        material = data["meterial"] as String,
+        price = data["price"] as Long,
+        userId = data["userId"] as String
+    )
 
 }

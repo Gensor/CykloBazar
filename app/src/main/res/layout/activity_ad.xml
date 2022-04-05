@@ -65,17 +65,6 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button_adActivity_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView_adActivity_Product" />
-
-
 
 
     <androidx.cardview.widget.CardView
@@ -84,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/linnearLayout_ad_spinners"
-        app:layout_constraintBottom_toTopOf="@id/button_adActivity_save">
+        >
 
         <LinearLayout
             android:id="@+id/linearLayout_adActivity_bikes"
@@ -97,6 +86,7 @@
                 android:id="@+id/linearLayout_adActivity_bikes_eBike"
                 android:layout_width="match_parent"
                 android:visibility= "gone"
+                android:orientation="vertical"
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -258,6 +248,25 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/button_adActivity_save_ebike"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/save">
+                    </Button>
+                    <Button
+                        android:id="@+id/button_adActivity_cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cancel">
+                    </Button>
+                </LinearLayout>
+
             </LinearLayout>
 
             //Road Bike
@@ -401,6 +410,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/button_adActivity_save_roadBike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/save">
+                        </Button>
+                        <Button
+                            android:id="@+id/button_adActivity_cancel_roadBike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cancel">
+                        </Button>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -576,6 +604,25 @@
                             />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/button_adActivity_save_mountainBike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/save">
+                        </Button>
+                        <Button
+                            android:id="@+id/button_adActivity_cancel_mountainBike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cancel">
+                        </Button>
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -682,6 +729,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/button_adActivity_save_fork"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/save">
+                        </Button>
+                        <Button
+                            android:id="@+id/button_adActivity_cancel_fork"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cancel">
+                        </Button>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -800,6 +866,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/button_adActivity_save_wheel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/save">
+                        </Button>
+                        <Button
+                            android:id="@+id/button_adActivity_cancel_wheel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cancel">
+                        </Button>
                     </LinearLayout>
 
                 </LinearLayout>

@@ -2,6 +2,7 @@ package com.gensor.cyklobazar.models.parts
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.gensor.cyklobazar.models.Product
 
 data class Wheel (
     val brand : String = "",
@@ -9,14 +10,16 @@ data class Wheel (
     val size : String = "",
     val material : String = "",
     val price : Long = 0L,
-        ) : Parcelable
+    val userId : String = ""
+) : Parcelable, Product
 {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readLong()
+        parcel.readLong(),
+        parcel.readString()!!
     ) {
     }
 
@@ -26,6 +29,7 @@ data class Wheel (
         parcel.writeString(size)
         parcel.writeString(material)
         parcel.writeLong(price)
+        parcel.writeString(userId)
     }
 
     override fun describeContents(): Int {

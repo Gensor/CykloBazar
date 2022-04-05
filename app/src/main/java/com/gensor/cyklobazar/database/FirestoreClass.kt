@@ -7,7 +7,13 @@ import android.os.Parcelable
 import android.util.Log
 import android.widget.Toast
 import com.gensor.cyklobazar.activities.*
+import com.gensor.cyklobazar.models.Product
 import com.gensor.cyklobazar.models.User
+import com.gensor.cyklobazar.models.bikes.EBike
+import com.gensor.cyklobazar.models.bikes.MountainBike
+import com.gensor.cyklobazar.models.bikes.RoadBike
+import com.gensor.cyklobazar.models.parts.Fork
+import com.gensor.cyklobazar.models.parts.Wheel
 import com.gensor.cyklobazar.utils.Constants
 import com.gensor.cyklobazar.utils.Session
 import com.google.firebase.auth.FirebaseAuth
@@ -24,7 +30,6 @@ class FirestoreClass() : Database {
 
     constructor(parcel: Parcel) : this() {
     }
-
 
     /*
     Registrácia užívateľa.
@@ -164,6 +169,30 @@ class FirestoreClass() : Database {
             }
     }
 
+    override fun addProduct(product: Product) {
+        when(product){
+            is EBike -> {
+                fireStore.collection(Constants.EBIKE)
+                    .add(product)
+            }
+            is MountainBike -> {
+                fireStore.collection(Constants.MOUNTAINBIKE)
+                    .add(product)
+            }
+            is RoadBike -> {
+                fireStore.collection(Constants.ROADBIKE)
+                    .add(product)
+            }
+            is Fork -> {
+                fireStore.collection(Constants.FORK)
+                    .add(product)
+            }
+            is Wheel -> {
+                fireStore.collection(Constants.WHEEL)
+                    .add(product)
+            }
+        }
+    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
 

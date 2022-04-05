@@ -2,27 +2,35 @@ package com.gensor.cyklobazar.models.parts
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.gensor.cyklobazar.models.Product
 
 data class Fork (
-    private val brand : String = "",
-    private val model : String = "",
-    private val travel : Int = 0,
-    private val price : Long = 0L
-): Parcelable{
+    val brand : String = "",
+    val model : String = "",
+    val travel : Int = 0,
+    val price : Long = 0L,
+    val userId : String = ""
+
+): Parcelable, Product{
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readInt(),
-        parcel.readLong()
+        parcel.readLong(),
+        parcel.readString()!!
     ) {
     }
 
-    override fun describeContents(): Int {
-        TODO("Not yet implemented")
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(brand)
+        parcel.writeString(model)
+        parcel.writeInt(travel)
+        parcel.writeLong(price)
+        parcel.writeString(userId)
     }
 
-    override fun writeToParcel(p0: Parcel?, p1: Int) {
-        TODO("Not yet implemented")
+    override fun describeContents(): Int {
+        return 0
     }
 
     companion object CREATOR : Parcelable.Creator<Fork> {
@@ -34,5 +42,6 @@ data class Fork (
             return arrayOfNulls(size)
         }
     }
+
 
 }

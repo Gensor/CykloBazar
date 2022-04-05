@@ -43,6 +43,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val bundle = Bundle()
         bundle.putParcelable("database",database)
+
         when(item.itemId){
             R.id.nav_view_main_login -> {
                 startActivity(Intent(this, LoginActivity::class.java)

@@ -2,6 +2,7 @@ package com.gensor.cyklobazar.models.bikes
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.gensor.cyklobazar.models.Product
 
 data class MountainBike (
     val brand: String = "",
@@ -11,9 +12,10 @@ data class MountainBike (
     val fork: String = "",
     val wheelSize: String = "",
     val dropperPost: Boolean = false,
+    val userId : String = ""
 
 
-    ): Parcelable {
+    ): Parcelable, Product {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
@@ -21,7 +23,8 @@ data class MountainBike (
         parcel.readLong(),
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readByte() != 0.toByte()
+        parcel.readByte() != 0.toByte(),
+        parcel.readString()!!
     ) {
     }
 
@@ -33,6 +36,7 @@ data class MountainBike (
         parcel.writeString(fork)
         parcel.writeString(wheelSize)
         parcel.writeByte(if (dropperPost) 1 else 0)
+        parcel.writeString(userId)
     }
 
     override fun describeContents(): Int {
