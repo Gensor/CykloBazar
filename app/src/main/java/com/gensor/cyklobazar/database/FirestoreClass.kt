@@ -7,6 +7,7 @@ import android.os.Parcelable
 import android.util.Log
 import android.widget.Toast
 import com.gensor.cyklobazar.activities.*
+import com.gensor.cyklobazar.activities.Ad.AdActivity
 import com.gensor.cyklobazar.models.Product
 import com.gensor.cyklobazar.models.User
 import com.gensor.cyklobazar.models.bikes.EBike
@@ -23,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.await
 
 class FirestoreClass() : Database {
     private val fireStore = FirebaseFirestore.getInstance()
@@ -138,9 +141,9 @@ class FirestoreClass() : Database {
     /*
     Uloží profilový obrázok do cloudového úložiska a odkaz do databázy.
      */
-    override fun uploadUserImage(uri: Uri, filename: String) {
-
-        FirebaseStorage.getInstance().reference.child(Constants.PROFILE_PICTURES + filename)
+    override fun uploadUserImage(uri: Uri) {
+        val fileName = "PROFILE_IMAGE" + System.currentTimeMillis()
+        FirebaseStorage.getInstance().reference.child(Constants.PROFILE_PICTURES + fileName)
             .putFile(uri)
             .addOnSuccessListener { taskSnapshot ->
                 taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener { uriInStorage ->
@@ -149,6 +152,17 @@ class FirestoreClass() : Database {
                         .update(Constants.USER_IMAGE, uriInStorage.toString())
                 }
             }
+    }
+
+    override fun uploadProductImage(uri: Uri, activity: AdActivity) {
+        val fileName = "PRODUCT_IMAGE" + System.currentTimeMillis()
+        val reference = FirebaseStorage.getInstance().reference.child(Constants.PRODUCT_IMAGES + fileName)
+
+        runBlocking {
+            reference.putFile(uri).await()
+            val url = reference.downloadUrl.await().toString()
+            activity.setImageUrl(url)
+        }
     }
 
     /*

@@ -15,18 +15,10 @@ object Constants {
 
     //storage
     const val PROFILE_PICTURES : String = "profile_photos/"
+    const val PRODUCT_IMAGES : String = "product_images/"
 
     //permisions
     const val READ_STORAGE_PERMISSION_CODE = 1
     const val PICK_IMAGE_CODE = 2
 
-
-
-    /*
-    získanie prípony súboru
-     */
-    /*fun getFileExtension(activity: Activity, uri: Uri?): String? {
-        return MimeTypeMap.getSingleton()
-            .getExtensionFromMimeType(activity.contentResolver.getType(uri!!))
-    }*/
 }

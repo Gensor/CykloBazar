@@ -138,8 +138,7 @@ class ProfileActivity :  BaseActivity() {
     Pomenuje obrázok zo zariadenia a uloží ho do databázy.
      */
     private fun uploadUserImage(database : Database){
-            val fileName = "PROFILE_IMAGE" + System.currentTimeMillis()
-            database.uploadUserImage(selectedImageFileUri!!, fileName)
+            database.uploadUserImage(selectedImageFileUri!!)
     }
 
     /*

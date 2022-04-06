@@ -19,6 +19,7 @@ object ProductFactory {
             .kw(data["kw"] as Int)
             .batteryCapacity(data["batteryCapacity"] as Int)
             .userId(data["userId"] as String)
+            .image(data["image"] as String)
             .build()
         return bike
     }
@@ -31,7 +32,8 @@ object ProductFactory {
         fork = data["fork"] as String,
         wheelSize = data["wheelSize"] as String,
         dropperPost = data["dropperPost"] as Boolean,
-        userId = data["userId"] as String
+        userId = data["userId"] as String,
+        image = data["image"] as String
     )
 
     fun getRoadBike(data : HashMap<String, Any>) = RoadBike(
@@ -41,7 +43,8 @@ object ProductFactory {
         price = data["price"] as Long,
         groupSet = data["groupSet"] as String,
         size = data["size"] as String,
-        userId = data["userId"] as String
+        userId = data["userId"] as String,
+        image = data["image"] as String
     )
 
     fun getFork(data : HashMap<String, Any>) = Fork(
@@ -49,7 +52,8 @@ object ProductFactory {
         model = data["model"] as String,
         travel = data["travel"] as Int,
         price = data["price"] as Long,
-        userId = data["userId"] as String
+        userId = data["userId"] as String,
+        image = data["image"] as String
     )
 
     fun getWheel(data : HashMap<String, Any>) = Wheel(
@@ -58,7 +62,8 @@ object ProductFactory {
         size = data["size"] as String,
         material = data["meterial"] as String,
         price = data["price"] as Long,
-        userId = data["userId"] as String
+        userId = data["userId"] as String,
+        image = data["image"] as String
     )
 
 }

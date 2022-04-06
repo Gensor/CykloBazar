@@ -12,7 +12,8 @@ data class EBike (
     val motor: String = "",
     val kw: Int = 0,
     val batteryCapacity: Int = 0,
-    val userId : String = ""
+    val userId : String = "",
+    val image : String = ""
 ): Parcelable,Product{
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
@@ -22,12 +23,21 @@ data class EBike (
         parcel.readString()!!,
         parcel.readInt(),
         parcel.readInt(),
+        parcel.readString()!!,
         parcel.readString()!!
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-
+        parcel.writeString(brand)
+        parcel.writeString(model)
+        parcel.writeInt(year)
+        parcel.writeLong(price)
+        parcel.writeString(motor)
+        parcel.writeInt(kw)
+        parcel.writeInt(batteryCapacity)
+        parcel.writeString(userId)
+        parcel.writeString(image)
     }
 
     override fun describeContents(): Int {

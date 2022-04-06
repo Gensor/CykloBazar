@@ -10,15 +10,16 @@ data class Wheel (
     val size : String = "",
     val material : String = "",
     val price : Long = 0L,
-    val userId : String = ""
-) : Parcelable, Product
-{
+    val userId : String = "",
+    val image : String = ""
+) : Parcelable, Product {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readLong(),
+        parcel.readString()!!,
         parcel.readString()!!
     ) {
     }
@@ -30,6 +31,7 @@ data class Wheel (
         parcel.writeString(material)
         parcel.writeLong(price)
         parcel.writeString(userId)
+        parcel.writeString(image)
     }
 
     override fun describeContents(): Int {

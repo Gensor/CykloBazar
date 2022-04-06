@@ -1,14 +1,22 @@
 package com.gensor.cyklobazar.activities.Ad
 
+import android.Manifest
+import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.gensor.cyklobazar.R
 import com.gensor.cyklobazar.activities.BaseActivity
 import com.gensor.cyklobazar.activities.MainActivity
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.factories.ProductFactory
+import com.gensor.cyklobazar.utils.Constants
 import kotlinx.android.synthetic.main.activity_ad.*
 
 class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -20,6 +28,8 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
     private var partsCategorySelected = ""
     private var productData = HashMap<String, Any>()
     private var database : Database? = null
+    private var imageUrl = ""
+    private var selectedImageFileUri : Uri? = null
 
     //observer pre formulare
     private val formViewManager = ViewVisibilityManager()
@@ -64,6 +74,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
         button_adActivity_cancel_mountainBike.setOnClickListener(this)
         button_adActivity_cancel_roadBike.setOnClickListener(this)
         button_adActivity_cancel_wheel.setOnClickListener(this)
+        button_adActivity_image.setOnClickListener(this)
 
 
     }
@@ -72,31 +83,60 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
         when(view.id){
             R.id.button_adActivity_save_ebike -> {
                 productData = getEBikeData()
+                if(selectedImageFileUri != null){
+                    database?.uploadProductImage(selectedImageFileUri!!, this@AdActivity)
+                }
                 val ebike = ProductFactory.getEbike(productData)
                 database?.addProduct(ebike)
+
             }
             R.id.button_adActivity_save_roadBike -> {
                 productData = getRoadBikeData()
+                if(selectedImageFileUri != null){
+                    database?.uploadProductImage(selectedImageFileUri!!, this)
+                }
                 val roadBike = ProductFactory.getRoadBike(productData)
                 database?.addProduct(roadBike)
             }
             R.id.button_adActivity_save_fork -> {
                 productData = getForkData()
+                if(selectedImageFileUri != null){
+                    database?.uploadProductImage(selectedImageFileUri!!, this)
+                }
                 val fork = ProductFactory.getFork(productData)
                 database?.addProduct(fork)
             }
             R.id.button_adActivity_save_mountainBike -> {
                 productData = getMountainBikeData()
+                if(selectedImageFileUri != null){
+                    database?.uploadProductImage(selectedImageFileUri!!, this)
+                }
                 val mountainBike = ProductFactory.getMountainBike(productData)
                 database?.addProduct(mountainBike)
             }
             R.id.button_adActivity_save_wheel -> {
                 productData = getWheelData()
+                if(selectedImageFileUri != null){
+                    database?.uploadProductImage(selectedImageFileUri!!, this)
+                }
                 val wheel = ProductFactory.getWheel(productData)
                 database?.addProduct(wheel)
             }
+            R.id.button_adActivity_image -> {
+                if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                    imageChooser()
+                }else {
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                        Constants.READ_STORAGE_PERMISSION_CODE)
+                }
+            }
             else -> onBackPressed()
         }
+    }
+
+    fun setImageUrl(url : String){
+        imageUrl = url
+        productData["image"] = imageUrl
     }
 
     /*
@@ -214,19 +254,28 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-        TODO("Not yet implemented")
+
     }
 
     private fun getEBikeData() : HashMap<String, Any>{
         val data : HashMap<String, Any> = HashMap()
+        var year = 0
+        var price = 0L
+        var kw = 0
+        var batteryCapacity = 0
 
-        val brand = et_ad_ebike_battery.text.toString()
+        val brand = et_ad_ebike_brand.text.toString()
         val model = et_ad_ebike_model.text.toString()
-        val year = et_ad_ebike_year.text.toString().toInt()
-        val price = et_ad_ebike_price.text.toString().toLong()
         val motor = et_ad_ebike_motor.text.toString()
-        val kw = et_ad_ebike_kw.text.toString().toInt()
-        val batteryCapacity = et_ad_ebike_battery.text.toString().toInt()
+        if (et_ad_ebike_year.text.toString().isNotEmpty())
+            year = et_ad_ebike_year.text.toString().toInt()
+        if(et_ad_ebike_price.text.toString().isNotEmpty())
+            price = et_ad_ebike_price.text.toString().toLong()
+        if(et_ad_ebike_kw.text.toString().isNotEmpty())
+            kw = et_ad_ebike_kw.text.toString().toInt()
+        if(et_ad_ebike_battery.text.toString().isNotEmpty())
+            batteryCapacity = et_ad_ebike_battery.text.toString().toInt()
+        val image = imageUrl
 
         data.set("brand", brand)
         data.set("model", model)
@@ -236,19 +285,25 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
         data.set("kw", kw)
         data.set("batteryCapacity", batteryCapacity)
         database?.let { data.set("userId", it.getUserId()) }
+        data.set("image", image)
 
         return data
     }
 
     private fun getRoadBikeData(): HashMap<String, Any> {
         val data : HashMap<String, Any> = HashMap()
+        var year = 0
+        var price = 0L
 
         val brand : String = et_ad_roadbike_brand.text.toString()
         val model : String = et_ad_roadbike_model.text.toString()
-        val year : Int = et_ad_roadbike_year.text.toString().toInt()
-        val price : Long = et_ad_roadbike_price.text.toString().toLong()
+        if(et_ad_roadbike_year.text.toString().isNotEmpty())
+            year = et_ad_roadbike_year.text.toString().toInt()
+        if(et_ad_roadbike_price.text.toString().isNotEmpty())
+            price = et_ad_roadbike_price.text.toString().toLong()
         val groupSet : String = et_ad_roadbike_groupSet.text.toString()
         val size : String = et_ad_roadbike_size.text.toString()
+        val image = imageUrl
 
         data.set("brand", brand)
         data.set("model", model)
@@ -257,20 +312,25 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
         data.set("groupSet", groupSet)
         data.set("size", size)
         database?.let { data.set("userId", it.getUserId()) }
+        data.set("image", image)
 
         return data
     }
 
     private fun getMountainBikeData(): HashMap<String, Any> {
         val data : HashMap<String, Any> = HashMap()
-
+        var year = 0
+        var price = 0L
         val brand: String = et_ad_mountainBike_brand.text.toString()
         val model: String = et_ad_mountainBike_model.text.toString()
-        val year: Int = et_ad_mountainBike_year.text.toString().toInt()
-        val price: Long = et_ad_mountainBike_price.text.toString().toLong()
+        if(et_ad_mountainBike_year.text.toString().isNotEmpty())
+            year = et_ad_mountainBike_year.text.toString().toInt()
+        if(et_ad_mountainBike_price.text.toString().isNotEmpty())
+            price = et_ad_mountainBike_price.text.toString().toLong()
         val fork: String = et_ad_mountainBike_fork.text.toString()
         val wheelSize: String = et_ad_mountainBike_wheelSize.text.toString()
         val dropperPost: Boolean = switch_ad_mountainBike_dropperPost.isChecked()
+        val image = imageUrl
 
         data.set("brand", brand)
         data.set("model", model)
@@ -280,35 +340,44 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
         data.set("wheelSize", wheelSize)
         data.set("dropperPost", dropperPost)
         database?.let { data.set("userId", it.getUserId()) }
+        data.set("image", image)
 
         return data
     }
 
     private fun getForkData(): HashMap<String, Any> {
         val data : HashMap<String, Any> = HashMap()
+        var price = 0L
+        var travel = 0
 
         val brand : String = et_ad_parts_fork_brand.text.toString()
         val model : String = et_ad_parts_fork_model.text.toString()
-        val travel : Int = et_ad_parts_fork_travel.text.toString().toInt()
-        val price : Long = et_ad_parts_fork_price.text.toString().toLong()
+        if(et_ad_parts_fork_travel.text.toString().isNotEmpty())
+            travel = et_ad_parts_fork_travel.text.toString().toInt()
+        if(et_ad_parts_fork_price.text.toString().isNotEmpty())
+            price = et_ad_parts_fork_price.text.toString().toLong()
+        val image = imageUrl
 
         data.set("brand", brand)
         data.set("model", model)
         data.set("price", price)
         data.set("travel", travel)
         database?.let { data.set("userId", it.getUserId()) }
+        data.set("image", image)
 
         return data
     }
 
     private fun getWheelData(): HashMap<String, Any> {
         val data : HashMap<String, Any> = HashMap()
-
+        var price = 0L
         val brand : String = et_ad_parts_wheel_brand.text.toString()
         val model : String = et_ad_parts_wheel_model.text.toString()
         val size : String = et_ad_parts_wheel_size.text.toString()
         val material : String = et_ad_parts_wheel_material.text.toString()
-        val price : Long = et_ad_parts_wheel_price.text.toString().toLong()
+        if(et_ad_parts_wheel_price.text.toString().isNotEmpty())
+            price = et_ad_parts_wheel_price.text.toString().toLong()
+        val image = imageUrl
 
         data.set("brand", brand)
         data.set("model", model)
@@ -316,8 +385,32 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
         data.set("size", size)
         data.set("material", material)
         database?.let { data.set("userId", it.getUserId()) }
+        data.set("image", image)
 
         return data
+    }
+
+
+    private fun imageChooser(){
+        val getIntent =  Intent(Intent.ACTION_GET_CONTENT)
+        getIntent.setType("image/*")
+
+        val pickIntent = Intent(Intent.ACTION_PICK)
+        pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*")
+
+        val chooserIntent = Intent.createChooser(getIntent, "Select Image")
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(pickIntent))
+
+        startActivityForResult(chooserIntent, Constants.PICK_IMAGE_CODE)
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == Constants.PICK_IMAGE_CODE && data!!.data != null){
+            selectedImageFileUri = data.data
+            button_adActivity_image.text = selectedImageFileUri.toString()
+        }
     }
 
 }

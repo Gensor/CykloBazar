@@ -11,14 +11,15 @@ data class RoadBike(
     val price : Long = 0,
     val groupSet : String = "",
     val size : String = "",
-    val userId : String = ""
-) : Parcelable, Product
-{
+    val userId : String = "",
+    val image : String = ""
+) : Parcelable, Product {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readInt(),
         parcel.readLong(),
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!
@@ -33,6 +34,7 @@ data class RoadBike(
         parcel.writeString(groupSet)
         parcel.writeString(size)
         parcel.writeString(userId)
+        parcel.writeString(image)
     }
 
     override fun describeContents(): Int {

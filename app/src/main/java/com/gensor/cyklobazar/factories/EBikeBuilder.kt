@@ -10,7 +10,8 @@ class EBikeBuilder private constructor(
     val motor: String?,
     val kw: Int?,
     val batteryCapacity: Int?,
-    val userId: String?
+    val userId: String?,
+    val image: String?
 ) {
 
     data class Builder(
@@ -21,7 +22,8 @@ class EBikeBuilder private constructor(
         var motor: String = "",
         var kw: Int = 0,
         var batteryCapacity: Int = 0,
-        var userId : String = ""
+        var userId : String = "",
+        var image: String = ""
     )
     {
         fun brand(brand: String) = apply { this.brand = brand }
@@ -32,7 +34,8 @@ class EBikeBuilder private constructor(
         fun kw(kw : Int) = apply { this.kw = kw }
         fun batteryCapacity(batteryCapacity : Int) = apply { this.batteryCapacity = batteryCapacity }
         fun userId(userId: String) = apply { this.userId = userId }
+        fun image(imageUrl : String) = apply { this.image = imageUrl }
 
-        fun build() = EBike(brand, model, year, price, motor, kw, batteryCapacity, userId)
+        fun build() = EBike(brand, model, year, price, motor, kw, batteryCapacity, userId, image)
     }
 }

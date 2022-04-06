@@ -33,6 +33,8 @@
     <string name="travel">Travel</string>
     <string name="material">Material</string>
     <string name="cancel">Cancel</string>
+    <string name="my_ads">My ads</string>
+    <string name="choose_image">Choose Image</string>
 
     <string-array name="ad_productCategory_spinner">
         <item name="bikes" type="string">Bikes</item>

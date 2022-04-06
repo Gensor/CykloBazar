@@ -9,7 +9,8 @@ data class Fork (
     val model : String = "",
     val travel : Int = 0,
     val price : Long = 0L,
-    val userId : String = ""
+    val userId : String = "",
+    val image : String = ""
 
 ): Parcelable, Product{
     constructor(parcel: Parcel) : this(
@@ -17,6 +18,7 @@ data class Fork (
         parcel.readString()!!,
         parcel.readInt(),
         parcel.readLong(),
+        parcel.readString()!!,
         parcel.readString()!!
     ) {
     }
@@ -27,6 +29,7 @@ data class Fork (
         parcel.writeInt(travel)
         parcel.writeLong(price)
         parcel.writeString(userId)
+        parcel.writeString(image)
     }
 
     override fun describeContents(): Int {
@@ -42,6 +45,4 @@ data class Fork (
             return arrayOfNulls(size)
         }
     }
-
-
 }

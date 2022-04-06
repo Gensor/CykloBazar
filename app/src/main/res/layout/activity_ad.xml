@@ -66,832 +66,868 @@
     </LinearLayout>
 
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView_adActivity_Product"
-        android:visibility = "visible"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/linnearLayout_ad_spinners"
         >
 
-        <LinearLayout
-            android:id="@+id/linearLayout_adActivity_bikes"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_adActivity_Product"
+            android:visibility = "visible"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            //E-Bike
-            <LinearLayout
-                android:id="@+id/linearLayout_adActivity_bikes_eBike"
+            android:layout_height="520dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            android:elevation="16dp"
+            >
+            <ScrollView
                 android:layout_width="match_parent"
-                android:visibility= "gone"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_ebike_brand"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="@string/brand"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_ebike_brand"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_ebike_model"
-                            android:text="@string/model"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"/>
-                        <EditText
-                            android:id="@+id/et_ad_ebike_model"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //year int
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_ebike_year"
-                            android:text="@string/year"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"/>
-                        <EditText
-                            android:id="@+id/et_ad_ebike_year"
-                            android:inputType="number"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //motor string
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_ebike_motor"
-                            android:text="@string/motor"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_ebike_motor"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //kw int
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_ebike_kw"
-                            android:text="@string/kw"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_ebike_kw"
-                            android:inputType="number"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //battery capacity int
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_ebike_battery"
-                            android:text="@string/batteryCapacity"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_ebike_battery"
-                            android:inputType="number"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //price long
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_ebike_price"
-                            android:text="@string/price"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"/>
-                        <EditText
-                            android:id="@+id/et_ad_ebike_price"
-                            android:inputType="numberDecimal"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                </LinearLayout>
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    >
+
                     <Button
-                        android:id="@+id/button_adActivity_save_ebike"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/save">
-                    </Button>
-                    <Button
-                        android:id="@+id/button_adActivity_cancel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/cancel">
-                    </Button>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            //Road Bike
-            <LinearLayout
-                android:id="@+id/linearLayout_adActivity_bikes_roadBike"
-                android:layout_width="match_parent"
-                android:visibility= "gone"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
+                        android:id="@+id/button_adActivity_image"
                         android:layout_width="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
+                        android:text="@string/choose_image"
                         >
 
-                        <TextView
-                            android:id="@+id/tv_ad_roadbike_brand"
-                            android:text="@string/brand"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_roadbike_brand"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
+                    </Button>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout_adActivity_bikes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        //E-Bike
+                        <LinearLayout
+                            android:id="@+id/linearLayout_adActivity_bikes_eBike"
+                            android:layout_width="match_parent"
+                            android:visibility= "gone"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_ebike_brand"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        android:text="@string/brand"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_ebike_brand"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_ebike_model"
+                                        android:text="@string/model"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"/>
+                                    <EditText
+                                        android:id="@+id/et_ad_ebike_model"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //year int
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_ebike_year"
+                                        android:text="@string/year"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"/>
+                                    <EditText
+                                        android:id="@+id/et_ad_ebike_year"
+                                        android:inputType="number"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //motor string
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_ebike_motor"
+                                        android:text="@string/motor"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_ebike_motor"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //kw int
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_ebike_kw"
+                                        android:text="@string/kw"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_ebike_kw"
+                                        android:inputType="number"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //battery capacity int
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_ebike_battery"
+                                        android:text="@string/batteryCapacity"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_ebike_battery"
+                                        android:inputType="number"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //price long
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_ebike_price"
+                                        android:text="@string/price"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"/>
+                                    <EditText
+                                        android:id="@+id/et_ad_ebike_price"
+                                        android:inputType="numberDecimal"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+                                <Button
+                                    android:id="@+id/button_adActivity_save_ebike"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/save">
+                                </Button>
+                                <Button
+                                    android:id="@+id/button_adActivity_cancel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/cancel">
+                                </Button>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        //Road Bike
+                        <LinearLayout
+                            android:id="@+id/linearLayout_adActivity_bikes_roadBike"
+                            android:layout_width="match_parent"
+                            android:visibility= "gone"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    >
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_roadbike_brand"
+                                        android:text="@string/brand"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_roadbike_brand"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:id="@+id/tv_ad_roadbike_model"
+                                        android:text="@string/model"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_roadbike_model"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //year int
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_roadbike_year"
+                                        android:text="@string/year"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_roadbike_year"
+                                        android:inputType="number"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //group set string
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_roadbike_groupSet"
+                                        android:text="@string/groupSet"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_roadbike_groupSet"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //size string
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_roadbike_size"
+                                        android:text="@string/roadBikeSize"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_roadbike_size"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //price long
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_roadbike_price"
+                                        android:text="@string/price"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_roadbike_price"
+                                        android:inputType="numberDecimal"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+                                    <Button
+                                        android:id="@+id/button_adActivity_save_roadBike"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/save">
+                                    </Button>
+                                    <Button
+                                        android:id="@+id/button_adActivity_cancel_roadBike"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/cancel">
+                                    </Button>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        //Mountain Bike
+                        <LinearLayout
+                            android:id="@+id/linearLayout_adActivity_bikes_mountainBike"
+                            android:layout_width="match_parent"
+                            android:visibility= "gone"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    >
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_mountainBike_brand"
+                                        android:text="@string/brand"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_mountainBike_brand"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:id="@+id/tv_ad_mountainBike_model"
+                                        android:text="@string/model"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_mountainBike_model"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //year int
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_mountainBike_year"
+                                        android:text="@string/year"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_mountainBike_year"
+                                        android:inputType="number"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //fork set string
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_mountainBike_fork"
+                                        android:text="@string/fork"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_mountainBike_fork"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //wheel size string
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_mountainBike_wheelSize"
+                                        android:text="@string/wheel_size"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+
+                                    <EditText
+                                        android:id="@+id/et_ad_mountainBike_wheelSize"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                //dropper post boolean
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_mountainBike_dropperPost"
+                                        android:text="@string/dropper_post"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+
+                                    <androidx.appcompat.widget.SwitchCompat
+                                        android:id="@+id/switch_ad_mountainBike_dropperPost"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="0.8"
+                                        />
+
+                                    />
+                                </LinearLayout>
+
+                                //price long
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_mountainBike_price"
+                                        android:text="@string/price"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_mountainBike_price"
+                                        android:inputType="numberDecimal"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+                                    <Button
+                                        android:id="@+id/button_adActivity_save_mountainBike"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/save">
+                                    </Button>
+                                    <Button
+                                        android:id="@+id/button_adActivity_cancel_mountainBike"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/cancel">
+                                    </Button>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayout_adActivity_parts"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/tv_ad_roadbike_model"
-                            android:text="@string/model"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_roadbike_model"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //year int
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tv_ad_roadbike_year"
-                            android:text="@string/year"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_roadbike_year"
-                            android:inputType="number"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
+                        //fork
+                        <LinearLayout
+                            android:id="@+id/linearLayout_adActivity_parts_fork"
+                            android:layout_width="match_parent"
+                            android:visibility= "gone"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
 
-                    //group set string
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tv_ad_roadbike_groupSet"
-                            android:text="@string/groupSet"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_roadbike_groupSet"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
+                                    <TextView
+                                        android:id="@+id/tv_ad_parts_fork_brand"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        android:text="@string/brand"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_parts_fork_brand"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
 
-                    //size string
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tv_ad_roadbike_size"
-                            android:text="@string/roadBikeSize"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_roadbike_size"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
+                                    <TextView
+                                        android:id="@+id/tv_ad_parts_fork_model"
+                                        android:text="@string/model"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"/>
+                                    <EditText
+                                        android:id="@+id/et_ad_parts_fork_model"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
 
-                    //price long
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
+                                //travel int
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tv_ad_roadbike_price"
-                            android:text="@string/price"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_roadbike_price"
-                            android:inputType="numberDecimal"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
+                                    <TextView
+                                        android:id="@+id/tv_ad_parts_fork_travel"
+                                        android:text="@string/travel"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"/>
+                                    <EditText
+                                        android:id="@+id/et_ad_parts_fork_travel"
+                                        android:inputType="number"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-                        <Button
-                            android:id="@+id/button_adActivity_save_roadBike"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/save">
-                        </Button>
-                        <Button
-                            android:id="@+id/button_adActivity_cancel_roadBike"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/cancel">
-                        </Button>
+                                //price long
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_parts_fork_price"
+                                        android:text="@string/price"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"/>
+                                    <EditText
+                                        android:id="@+id/et_ad_parts_fork_price"
+                                        android:inputType="numberDecimal"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+                                    <Button
+                                        android:id="@+id/button_adActivity_save_fork"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/save">
+                                    </Button>
+                                    <Button
+                                        android:id="@+id/button_adActivity_cancel_fork"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/cancel">
+                                    </Button>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        //wheels
+                        <LinearLayout
+                            android:id="@+id/linearLayout_adActivity_parts_wheel"
+                            android:layout_width="match_parent"
+                            android:visibility= "gone"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_parts_wheel_brand"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"
+                                        android:text="@string/brand"
+                                        />
+                                    <EditText
+                                        android:id="@+id/et_ad_parts_wheel_brand"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_parts_wheel_model"
+                                        android:text="@string/model"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"/>
+                                    <EditText
+                                        android:id="@+id/et_ad_parts_wheel_model"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_parts_wheel_size"
+                                        android:text="@string/wheel_size"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"/>
+                                    <EditText
+                                        android:id="@+id/et_ad_parts_wheel_size"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_parts_wheel_material"
+                                        android:text="@string/material"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"/>
+                                    <EditText
+                                        android:id="@+id/et_ad_parts_wheel_material"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_ad_parts_wheel_price"
+                                        android:text="@string/price"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="0.2"/>
+                                    <EditText
+                                        android:id="@+id/et_ad_parts_wheel_price"
+                                        android:inputType="numberDecimal"
+                                        android:layout_weight="0.80"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        />
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+                                    <Button
+                                        android:id="@+id/button_adActivity_save_wheel"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/save">
+                                    </Button>
+                                    <Button
+                                        android:id="@+id/button_adActivity_cancel_wheel"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/cancel">
+                                    </Button>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </ScrollView>
 
-            //Mountain Bike
-            <LinearLayout
-                android:id="@+id/linearLayout_adActivity_bikes_mountainBike"
-                android:layout_width="match_parent"
-                android:visibility= "gone"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+        </androidx.cardview.widget.CardView>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        >
+    </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/tv_ad_mountainBike_brand"
-                            android:text="@string/brand"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_mountainBike_brand"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/tv_ad_mountainBike_model"
-                            android:text="@string/model"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_mountainBike_model"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //year int
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_mountainBike_year"
-                            android:text="@string/year"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_mountainBike_year"
-                            android:inputType="number"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //fork set string
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_mountainBike_fork"
-                            android:text="@string/fork"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_mountainBike_fork"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //wheel size string
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_mountainBike_wheelSize"
-                            android:text="@string/wheel_size"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-
-                        <EditText
-                            android:id="@+id/et_ad_mountainBike_wheelSize"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //dropper post boolean
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_mountainBike_dropperPost"
-                            android:text="@string/dropper_post"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-
-                        <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/switch_ad_mountainBike_dropperPost"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            />
-
-                        />
-                    </LinearLayout>
-
-                    //price long
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_mountainBike_price"
-                            android:text="@string/price"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_mountainBike_price"
-                            android:inputType="numberDecimal"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-                        <Button
-                            android:id="@+id/button_adActivity_save_mountainBike"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/save">
-                        </Button>
-                        <Button
-                            android:id="@+id/button_adActivity_cancel_mountainBike"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/cancel">
-                        </Button>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout_adActivity_parts"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            //fork
-            <LinearLayout
-                android:id="@+id/linearLayout_adActivity_parts_fork"
-                android:layout_width="match_parent"
-                android:visibility= "gone"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_parts_fork_brand"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="@string/brand"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_parts_fork_brand"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_parts_fork_model"
-                            android:text="@string/model"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"/>
-                        <EditText
-                            android:id="@+id/et_ad_parts_fork_model"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //travel int
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_parts_fork_travel"
-                            android:text="@string/travel"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"/>
-                        <EditText
-                            android:id="@+id/et_ad_parts_fork_travel"
-                            android:inputType="number"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    //price long
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_parts_fork_price"
-                            android:text="@string/price"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"/>
-                        <EditText
-                            android:id="@+id/et_ad_parts_fork_price"
-                            android:inputType="numberDecimal"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-                        <Button
-                            android:id="@+id/button_adActivity_save_fork"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/save">
-                        </Button>
-                        <Button
-                            android:id="@+id/button_adActivity_cancel_fork"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/cancel">
-                        </Button>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            //wheels
-            <LinearLayout
-                android:id="@+id/linearLayout_adActivity_parts_wheel"
-                android:layout_width="match_parent"
-                android:visibility= "gone"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_parts_wheel_brand"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"
-                            android:text="@string/brand"
-                            />
-                        <EditText
-                            android:id="@+id/et_ad_parts_wheel_brand"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_parts_wheel_model"
-                            android:text="@string/model"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"/>
-                        <EditText
-                            android:id="@+id/et_ad_parts_wheel_model"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_parts_wheel_size"
-                            android:text="@string/wheel_size"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"/>
-                        <EditText
-                            android:id="@+id/et_ad_parts_wheel_size"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_parts_wheel_material"
-                            android:text="@string/material"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"/>
-                        <EditText
-                            android:id="@+id/et_ad_parts_wheel_material"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/ad_linearlayout_product_field_padding"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tv_ad_parts_wheel_price"
-                            android:text="@string/price"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_weight="0.2"/>
-                        <EditText
-                            android:id="@+id/et_ad_parts_wheel_price"
-                            android:inputType="numberDecimal"
-                            android:layout_weight="0.80"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-                        <Button
-                            android:id="@+id/button_adActivity_save_wheel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/save">
-                        </Button>
-                        <Button
-                            android:id="@+id/button_adActivity_cancel_wheel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/cancel">
-                        </Button>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
