@@ -36,6 +36,6 @@ class EBikeBuilder private constructor(
         fun userId(userId: String) = apply { this.userId = userId }
         fun image(imageUrl : String) = apply { this.image = imageUrl }
 
-        fun build() = EBike(brand, model, year, price, motor, kw, batteryCapacity, userId, image)
+        fun build() = EBike("", brand, model, year, price, motor, kw, batteryCapacity, userId, image)
     }
 }

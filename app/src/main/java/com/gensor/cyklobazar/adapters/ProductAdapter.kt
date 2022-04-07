@@ -1,0 +1,115 @@
+package com.gensor.cyklobazar.adapters
+
+import android.app.AlertDialog
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.AsyncTask
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import com.gensor.cyklobazar.R.*
+import com.gensor.cyklobazar.database.Database
+import com.gensor.cyklobazar.models.Product
+
+open class ProductAdapter(
+    private var listOfProducts : ArrayList<Product>,
+    private val context : Context,
+    private val database : Database
+) : RecyclerView.Adapter<ProductAdapter.ViewHolder>(){
+
+    private val TAG : String = "PRODUCY_ADAPTER"
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductAdapter.ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(layout.activity_my_ads_ad, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
+        val product = listOfProducts.get(position)
+        Log.i(TAG," product : ${product.toString()}")
+        populateFields(product, holder)
+        holder.itemView.setOnClickListener {
+            //TODO: sprav fragment s obrazkom a toStringom
+        }
+    }
+
+    private fun populateFields(product: Product, holder: ProductAdapter.ViewHolder){
+        /*Glide
+            .with(context)
+            .load(product.image)
+            .centerCrop()
+            .placeholder(drawable.ic_baseline_insert_photo_24)
+            .into(holder.productImage)*/
+        DownloadImageFromInternet(holder.productImage).execute(product.image)
+
+        holder.title.text = "${product.brand} ${product.model}"
+        holder.price.text = "Price: ${product.price} €"
+        holder.deleteImage.setOnClickListener {
+            AlertDialog.Builder(context)
+                .setMessage("Are you sure?")
+                .setCancelable(false)
+                .setPositiveButton("Yes"){ dialog, id ->
+                    database.deleteProduct(product)
+                    this.notifyDataSetChanged()
+                }
+                .setNegativeButton("No"){dialog, id ->
+                    dialog.dismiss()
+                }
+                .create()
+                .show()
+        }
+    }
+    override fun getItemCount(): Int {
+        return listOfProducts.size
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        var title : TextView
+        var productImage : ImageView
+        var price : TextView
+        var deleteImage : ImageView
+
+
+        init{
+            title = itemView.findViewById(id.tv_myAds_ad_name)
+            productImage = itemView.findViewById(id.iv_myAds_ad_productImage)
+            price = itemView.findViewById(id.tv_myAds_ad_price)
+            deleteImage = itemView.findViewById(id.button_myAds_ad_delete)
+
+        }
+    }
+
+
+    ///
+    private inner class DownloadImageFromInternet(var imageView: ImageView) : AsyncTask<String, Void, Bitmap?>() {
+        init {
+            Toast.makeText(context, "Please wait, it may take a few seconds...",     Toast.LENGTH_SHORT).show()
+        }
+        override fun doInBackground(vararg urls: String): Bitmap? {
+            val imageURL = urls[0]
+            var image: Bitmap? = null
+            try {
+                val `in` = java.net.URL(imageURL).openStream()
+                image = BitmapFactory.decodeStream(`in`)
+            }
+            catch (e: Exception) {
+                Log.e("Error Message", e.message.toString())
+                e.printStackTrace()
+            }
+            return image
+        }
+        override fun onPostExecute(result: Bitmap?) {
+            imageView.setImageBitmap(result)
+        }
+    }
+    ///
+
+
+}

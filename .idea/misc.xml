@@ -10,8 +10,11 @@
         <entry key="..\:/DEV/TOOLS/JAVA/JDK/jdk-11/bin/caches/transforms-3/fbb2046ac5120fd294bf10a413586e47/transformed/material-1.5.0/res/drawable/material_ic_menu_arrow_down_black_24dp.xml" value="0.196" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.196" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/drawable/ic_baseline_app_registration_24.xml" value="0.196" />
+        <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.2195" />
+        <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/drawable/ic_baseline_insert_photo_24.xml" value="0.2195" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.196" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.243" />
+        <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/drawable/ic_baseline_mode_edit_24.xml" value="0.2195" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.196" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/drawable/ic_baseline_reorder_24.xml" value="0.243" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/drawable/ic_launcher_background.xml" value="0.196" />
@@ -20,7 +23,10 @@
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/layout/activity_login.xml" value="0.18802083333333333" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/layout/activity_main.xml" value="0.75" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/layout/activity_main_content.xml" value="0.18802083333333333" />
+        <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/layout/activity_main_main.xml" value="0.19791666666666666" />
+        <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/layout/activity_main_main_content.xml" value="0.19791666666666666" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/layout/activity_my_ads.xml" value="0.21875" />
+        <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/layout/activity_my_ads_ad.xml" value="0.19791666666666666" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/layout/activity_profile.xml" value="0.33" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
         <entry key="..\:/DEV/WORKSPACE/ANDROID/CykloBazar/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />

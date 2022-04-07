@@ -109,6 +109,7 @@ class ProfileActivity :  BaseActivity() {
         Glide
             .with(this)
             .load(user.image)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .centerCrop()
             .placeholder(resources.getDrawable(R.drawable.ic_baseline_person_24,theme))
             .into(iv_profile_user_image)
@@ -138,7 +139,8 @@ class ProfileActivity :  BaseActivity() {
     Pomenuje obrázok zo zariadenia a uloží ho do databázy.
      */
     private fun uploadUserImage(database : Database){
-            database.uploadUserImage(selectedImageFileUri!!)
+        val imageByteArray = Constants.reduceImageSize(this, selectedImageFileUri!!)
+        database.uploadUserImage(imageByteArray)
     }
 
     /*

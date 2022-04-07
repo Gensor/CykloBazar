@@ -1,5 +1,11 @@
 package com.gensor.cyklobazar.utils
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.net.Uri
+import android.provider.MediaStore
+import java.io.ByteArrayOutputStream
+
 object Constants {
 
     //database
@@ -12,6 +18,7 @@ object Constants {
     const val ROADBIKE : String = "roadBike"
     const val FORK : String = "fork"
     const val WHEEL : String = "wheel"
+    const val PRODUCT_USER_ID = "userId"
 
     //storage
     const val PROFILE_PICTURES : String = "profile_photos/"
@@ -20,5 +27,14 @@ object Constants {
     //permisions
     const val READ_STORAGE_PERMISSION_CODE = 1
     const val PICK_IMAGE_CODE = 2
+
+    fun reduceImageSize(context: Context, uri: Uri): ByteArray{
+        val bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri)
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream)
+        val reducedImage: ByteArray = byteArrayOutputStream.toByteArray()
+
+        return reducedImage
+    }
 
 }

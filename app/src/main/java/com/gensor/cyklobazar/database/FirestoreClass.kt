@@ -1,7 +1,6 @@
 package com.gensor.cyklobazar.database
 
 import android.app.Activity
-import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
 import android.util.Log
@@ -24,12 +23,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 
 class FirestoreClass() : Database {
     private val fireStore = FirebaseFirestore.getInstance()
     private var auth: FirebaseAuth = Firebase.auth
+    private val TAG = "DATABASE"
 
     constructor(parcel: Parcel) : this() {
     }
@@ -57,7 +56,7 @@ class FirestoreClass() : Database {
                             activity.userRegisteredSuccess()
                         }
                 } else {
-                    Toast.makeText(activity, task.exception!!.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, task.exception!!.message, Toast.LENGTH_LONG).show()
                     activity.hideProgressDialog()
                 }
             }
@@ -141,10 +140,11 @@ class FirestoreClass() : Database {
     /*
     Uloží profilový obrázok do cloudového úložiska a odkaz do databázy.
      */
-    override fun uploadUserImage(uri: Uri) {
+    override fun uploadUserImage(imageBytes: ByteArray) {
         val fileName = "PROFILE_IMAGE" + System.currentTimeMillis()
+
         FirebaseStorage.getInstance().reference.child(Constants.PROFILE_PICTURES + fileName)
-            .putFile(uri)
+            .putBytes(imageBytes)
             .addOnSuccessListener { taskSnapshot ->
                 taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener { uriInStorage ->
                     fireStore.collection(Constants.USERS)
@@ -154,15 +154,14 @@ class FirestoreClass() : Database {
             }
     }
 
-    override fun uploadProductImage(uri: Uri, activity: AdActivity) {
+    override suspend fun uploadProductImage(imageBytes: ByteArray, activity: AdActivity) {
         val fileName = "PRODUCT_IMAGE" + System.currentTimeMillis()
         val reference = FirebaseStorage.getInstance().reference.child(Constants.PRODUCT_IMAGES + fileName)
 
-        runBlocking {
-            reference.putFile(uri).await()
-            val url = reference.downloadUrl.await().toString()
-            activity.setImageUrl(url)
-        }
+        reference.putBytes(imageBytes).await()
+        val url = reference.downloadUrl.await().toString()
+        activity.setImageUrl(url)
+
     }
 
     /*
@@ -183,29 +182,101 @@ class FirestoreClass() : Database {
             }
     }
 
-    override fun addProduct(product: Product) {
+    override suspend fun addProduct(product: Product) {
         when(product){
             is EBike -> {
-                fireStore.collection(Constants.EBIKE)
-                    .add(product)
+                addProductByType(Constants.EBIKE, product)
             }
             is MountainBike -> {
-                fireStore.collection(Constants.MOUNTAINBIKE)
-                    .add(product)
+                addProductByType(Constants.MOUNTAINBIKE, product)
             }
             is RoadBike -> {
-                fireStore.collection(Constants.ROADBIKE)
-                    .add(product)
+                addProductByType(Constants.ROADBIKE, product)
             }
             is Fork -> {
-                fireStore.collection(Constants.FORK)
-                    .add(product)
+                addProductByType(Constants.FORK, product)
             }
             is Wheel -> {
-                fireStore.collection(Constants.WHEEL)
-                    .add(product)
+                addProductByType(Constants.WHEEL, product)
             }
         }
+    }
+
+    private suspend fun addProductByType(type: String, product: Product){
+        val ref = fireStore.collection(type)
+        val documentReference = ref.add(product).await()
+        ref.document(documentReference.id).set(hashMapOf("id" to documentReference.id), SetOptions.merge())
+    }
+    /*
+    metoda na vymazanie dokumentu z kolekcie podla id
+     */
+    override fun deleteProduct(product: Product) {
+        when(product){
+            is EBike -> {
+                fireStore.collection(Constants.EBIKE).document(product.id).delete()
+            }
+            is MountainBike -> {
+                fireStore.collection(Constants.MOUNTAINBIKE).document(product.id).delete()
+            }
+            is RoadBike -> {
+                fireStore.collection(Constants.ROADBIKE).document(product.id).delete()
+            }
+            is Fork -> {
+                fireStore.collection(Constants.FORK).document(product.id).delete()
+            }
+            is Wheel -> {
+                fireStore.collection(Constants.WHEEL).document(product.id).delete()
+            }
+        }
+    }
+
+    /*
+    metoda na ziskanie vsetkych uzivatelom pridanych produktov.
+     */
+    override suspend fun getMyAds(activity: MyAdsActivity) {
+        val array = ArrayList<Product>()
+
+        val collections = arrayOf(Constants.EBIKE, Constants.FORK, Constants.MOUNTAINBIKE, Constants.ROADBIKE, Constants.WHEEL)
+
+        for (colection in collections){
+            val documents = fireStore.collection(colection).whereEqualTo(Constants.PRODUCT_USER_ID, getUserId()).get().await()
+            documents.documents.forEach {
+                when(colection){
+                    Constants.EBIKE -> { array.add(it.toObject(EBike::class.java)!!)}
+                    Constants.FORK -> { array.add(it.toObject(Fork::class.java)!!)}
+                    Constants.MOUNTAINBIKE -> { array.add(it.toObject(MountainBike::class.java)!!)}
+                    Constants.ROADBIKE -> { array.add(it.toObject(RoadBike::class.java)!!)}
+                    Constants.WHEEL -> { array.add(it.toObject(Wheel::class.java)!!)}
+                }
+            }
+        }
+        Log.i(TAG,array.toString())
+        activity.showProducts(array)
+
+    }
+
+    /*
+    metoda na ziskanie vsetkych produktov v bazary
+     */
+    override suspend fun getAllAds(): ArrayList<Product> {
+        val array = ArrayList<Product>()
+
+        val collections = arrayOf(Constants.EBIKE, Constants.FORK, Constants.MOUNTAINBIKE, Constants.ROADBIKE, Constants.WHEEL)
+
+        for (colection in collections){
+            val documents = fireStore.collection(colection).get().await()
+            documents.documents.forEach {
+                when(colection){
+                    Constants.EBIKE -> { array.add(it.toObject(EBike::class.java)!!)}
+                    Constants.FORK -> { array.add(it.toObject(Fork::class.java)!!)}
+                    Constants.MOUNTAINBIKE -> { array.add(it.toObject(MountainBike::class.java)!!)}
+                    Constants.ROADBIKE -> { array.add(it.toObject(RoadBike::class.java)!!)}
+                    Constants.WHEEL -> { array.add(it.toObject(Wheel::class.java)!!)}
+                }
+            }
+        }
+        Log.i(TAG,array.toString())
+        return array
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

@@ -1,15 +1,26 @@
 package com.gensor.cyklobazar.factories
 
+import com.gensor.cyklobazar.models.Product
 import com.gensor.cyklobazar.models.bikes.EBike
 import com.gensor.cyklobazar.models.bikes.MountainBike
 import com.gensor.cyklobazar.models.bikes.RoadBike
 import com.gensor.cyklobazar.models.parts.Fork
 import com.gensor.cyklobazar.models.parts.Wheel
+import com.gensor.cyklobazar.utils.Constants
 
 object ProductFactory {
 
-
-    fun getEbike(data : HashMap<String, Any>) : EBike{
+    fun createProduct(type: String, data: HashMap<String, Any>): Product?{
+        when(type){
+            Constants.EBIKE -> return getEbike(data)
+            Constants.MOUNTAINBIKE -> return getMountainBike(data)
+            Constants.ROADBIKE -> return getRoadBike(data)
+            Constants.FORK -> return getFork(data)
+            Constants.WHEEL -> return getWheel(data)
+        }
+        return null
+    }
+    private fun getEbike(data : HashMap<String, Any>) : EBike{
         val bike = EBikeBuilder.Builder()
             .brand(data["brand"] as String)
             .model(data["model"] as String)
@@ -24,7 +35,7 @@ object ProductFactory {
         return bike
     }
 
-    fun getMountainBike(data : HashMap<String, Any>) = MountainBike(
+    private fun getMountainBike(data : HashMap<String, Any>) = MountainBike(
         brand = data["brand"] as String,
         model = data["model"] as String,
         year= data["year"] as Int,
@@ -36,7 +47,7 @@ object ProductFactory {
         image = data["image"] as String
     )
 
-    fun getRoadBike(data : HashMap<String, Any>) = RoadBike(
+    private fun getRoadBike(data : HashMap<String, Any>) = RoadBike(
         brand = data["brand"] as String,
         model = data["model"] as String,
         year = data["year"] as Int,
@@ -47,7 +58,7 @@ object ProductFactory {
         image = data["image"] as String
     )
 
-    fun getFork(data : HashMap<String, Any>) = Fork(
+    private fun getFork(data : HashMap<String, Any>) = Fork(
         brand = data["brand"] as String,
         model = data["model"] as String,
         travel = data["travel"] as Int,
@@ -56,7 +67,7 @@ object ProductFactory {
         image = data["image"] as String
     )
 
-    fun getWheel(data : HashMap<String, Any>) = Wheel(
+    private fun getWheel(data : HashMap<String, Any>) = Wheel(
         brand = data["brand"] as String,
         model = data["model"] as String,
         size = data["size"] as String,

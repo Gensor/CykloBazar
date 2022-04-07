@@ -14,7 +14,7 @@ import com.gensor.cyklobazar.models.User
 import com.gensor.cyklobazar.utils.Session
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.activity_main_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +27,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setupActionBar()
         database.loadUser(this)
         nav_view.setNavigationItemSelectedListener(this)
+
     }
 
     override fun onBackPressed() {

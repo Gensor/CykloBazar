@@ -7,10 +7,12 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.gensor.cyklobazar.R
 import com.gensor.cyklobazar.activities.BaseActivity
 import com.gensor.cyklobazar.activities.MainActivity
@@ -18,6 +20,7 @@ import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.factories.ProductFactory
 import com.gensor.cyklobazar.utils.Constants
 import kotlinx.android.synthetic.main.activity_ad.*
+import kotlinx.coroutines.launch
 
 class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnClickListener {
     private lateinit var spinner_productCategory : Spinner
@@ -43,6 +46,8 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
     private val spinnerViewManager = ViewVisibilityManager()
     private  lateinit var bikeSpinnerView : ViewVisibility
     private  lateinit var partsSpinnerView : ViewVisibility
+
+    private val TAG = "AD_ACTIVITY"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,63 +85,83 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
     }
 
     override fun onClick(view : View){
-        when(view.id){
-            R.id.button_adActivity_save_ebike -> {
-                productData = getEBikeData()
-                if(selectedImageFileUri != null){
-                    database?.uploadProductImage(selectedImageFileUri!!, this@AdActivity)
-                }
-                val ebike = ProductFactory.getEbike(productData)
-                database?.addProduct(ebike)
+        lifecycleScope.launch {
+            when(view.id){
+                R.id.button_adActivity_save_ebike -> {
+                    productData = getEBikeData()
+                    uploadProductImage()
+                    val ebike = ProductFactory.createProduct(Constants.EBIKE, productData)
+                        Log.i(TAG,"ebike going to db: ${ebike.toString()}")
+                    if (ebike != null)
+                        database?.addProduct(ebike)
+                    else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    onBackPressed()
 
-            }
-            R.id.button_adActivity_save_roadBike -> {
-                productData = getRoadBikeData()
-                if(selectedImageFileUri != null){
-                    database?.uploadProductImage(selectedImageFileUri!!, this)
                 }
-                val roadBike = ProductFactory.getRoadBike(productData)
-                database?.addProduct(roadBike)
-            }
-            R.id.button_adActivity_save_fork -> {
-                productData = getForkData()
-                if(selectedImageFileUri != null){
-                    database?.uploadProductImage(selectedImageFileUri!!, this)
+                R.id.button_adActivity_save_roadBike -> {
+                    productData = getRoadBikeData()
+                    uploadProductImage()
+                    val roadBike = ProductFactory.createProduct(Constants.ROADBIKE, productData)
+                    if (roadBike != null)
+                        database?.addProduct(roadBike)
+                    else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    onBackPressed()
                 }
-                val fork = ProductFactory.getFork(productData)
-                database?.addProduct(fork)
-            }
-            R.id.button_adActivity_save_mountainBike -> {
-                productData = getMountainBikeData()
-                if(selectedImageFileUri != null){
-                    database?.uploadProductImage(selectedImageFileUri!!, this)
+                R.id.button_adActivity_save_fork -> {
+                    productData = getForkData()
+                    uploadProductImage()
+                    val fork = ProductFactory.createProduct(Constants.FORK, productData)
+                    if(fork != null)
+                        database?.addProduct(fork)
+                    else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    onBackPressed()
                 }
-                val mountainBike = ProductFactory.getMountainBike(productData)
-                database?.addProduct(mountainBike)
-            }
-            R.id.button_adActivity_save_wheel -> {
-                productData = getWheelData()
-                if(selectedImageFileUri != null){
-                    database?.uploadProductImage(selectedImageFileUri!!, this)
+                R.id.button_adActivity_save_mountainBike -> {
+                    productData = getMountainBikeData()
+                    uploadProductImage()
+                    val mountainBike = ProductFactory.createProduct(Constants.MOUNTAINBIKE, productData)
+                    if(mountainBike != null)
+                        database?.addProduct(mountainBike)
+                    else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    onBackPressed()
                 }
-                val wheel = ProductFactory.getWheel(productData)
-                database?.addProduct(wheel)
-            }
-            R.id.button_adActivity_image -> {
-                if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-                    imageChooser()
-                }else {
-                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        Constants.READ_STORAGE_PERMISSION_CODE)
+                R.id.button_adActivity_save_wheel -> {
+                    productData = getWheelData()
+                    uploadProductImage()
+                    val wheel = ProductFactory.createProduct(Constants.WHEEL, productData)
+                    if(wheel != null)
+                        database?.addProduct(wheel)
+                    else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    onBackPressed()
                 }
+                R.id.button_adActivity_image -> {
+                    if(ContextCompat.checkSelfPermission(this@AdActivity, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                        imageChooser()
+                    }else {
+                        ActivityCompat.requestPermissions(this@AdActivity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                            Constants.READ_STORAGE_PERMISSION_CODE)
+                    }
+                }
+                else -> onBackPressed()
             }
-            else -> onBackPressed()
+
         }
     }
 
     fun setImageUrl(url : String){
+        Log.i(TAG,"setting imageurl in setImageUrl: $url")
         imageUrl = url
         productData["image"] = imageUrl
+    }
+
+    private suspend fun uploadProductImage(){
+
+            if(selectedImageFileUri != null){
+                val imageByteArray = Constants.reduceImageSize(this@AdActivity, selectedImageFileUri!!)
+                database?.uploadProductImage(imageByteArray, this@AdActivity)
+            }
+
+
     }
 
     /*

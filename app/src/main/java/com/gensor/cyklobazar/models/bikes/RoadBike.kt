@@ -5,16 +5,18 @@ import android.os.Parcelable
 import com.gensor.cyklobazar.models.Product
 
 data class RoadBike(
-    val brand : String = "",
-    val model : String = "",
+    val id : String = "",
+    override val brand : String = "",
+    override val model : String = "",
     val year : Int = 0,
-    val price : Long = 0,
+    override val price : Long = 0,
     val groupSet : String = "",
     val size : String = "",
     val userId : String = "",
-    val image : String = ""
+    override val image : String = ""
 ) : Parcelable, Product {
     constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readInt(),
@@ -27,6 +29,7 @@ data class RoadBike(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(id)
         parcel.writeString(brand)
         parcel.writeString(model)
         parcel.writeInt(year)
