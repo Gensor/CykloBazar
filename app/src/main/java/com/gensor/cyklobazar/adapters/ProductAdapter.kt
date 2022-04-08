@@ -31,13 +31,13 @@ open class ProductAdapter(
     override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
         val product = listOfProducts.get(position)
         Log.i(TAG," product : ${product.toString()}")
-        populateFields(product, holder)
+        populateFields(product, holder, position)
         holder.itemView.setOnClickListener {
             //TODO: sprav fragment s obrazkom a toStringom
         }
     }
 
-    private fun populateFields(product: Product, holder: ProductAdapter.ViewHolder){
+    private fun populateFields(product: Product, holder: ProductAdapter.ViewHolder, position: Int){
         Glide
             .with(context)
             .load(product.image)
@@ -53,7 +53,8 @@ open class ProductAdapter(
                 .setCancelable(false)
                 .setPositiveButton("Yes"){ dialog, id ->
                     database.deleteProduct(product)
-                    this.notifyDataSetChanged()
+                    listOfProducts.removeAt(position)
+                    notifyItemRemoved(position)
                 }
                 .setNegativeButton("No"){dialog, id ->
                     dialog.dismiss()
