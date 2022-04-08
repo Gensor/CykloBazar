@@ -13,7 +13,7 @@ data class EBike (
     val motor: String = "",
     val kw: Int = 0,
     val batteryCapacity: Int = 0,
-    val userId : String = "",
+    override val userId : String = "",
     override val image : String = ""
 ): Parcelable,Product{
     constructor(parcel: Parcel) : this(

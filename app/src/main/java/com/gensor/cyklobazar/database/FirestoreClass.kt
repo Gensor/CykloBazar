@@ -258,7 +258,7 @@ class FirestoreClass() : Database {
     /*
     metoda na ziskanie vsetkych produktov v bazary
      */
-    override suspend fun getAllAds(): ArrayList<Product> {
+    override suspend fun getAllAds(activity: MainActivity) {
         val array = ArrayList<Product>()
 
         val collections = arrayOf(Constants.EBIKE, Constants.FORK, Constants.MOUNTAINBIKE, Constants.ROADBIKE, Constants.WHEEL)
@@ -276,7 +276,13 @@ class FirestoreClass() : Database {
             }
         }
         Log.i(TAG,array.toString())
-        return array
+
+        activity.showProducts(array)
+    }
+
+    override suspend fun getUserName(id: String): String{
+        val ref = fireStore.collection(Constants.USERS).document(id)
+        return ref.get().await().getString(Constants.USER_NAME)!!
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

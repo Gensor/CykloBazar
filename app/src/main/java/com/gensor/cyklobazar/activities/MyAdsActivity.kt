@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gensor.cyklobazar.R
-import com.gensor.cyklobazar.adapters.ProductAdapter
+import com.gensor.cyklobazar.adapters.MyAdsProductAdapter
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.models.Product
 import kotlinx.android.synthetic.main.activity_my_ads.*
@@ -49,7 +49,7 @@ class MyAdsActivity : BaseActivity() {
             rv_myAds.layoutManager = LinearLayoutManager(this)
             rv_myAds.setHasFixedSize(true)
 
-            val adapter = ProductAdapter(listOfProducts, this, database)
+            val adapter = MyAdsProductAdapter(listOfProducts, this, database)
             rv_myAds.adapter = adapter
 
     }

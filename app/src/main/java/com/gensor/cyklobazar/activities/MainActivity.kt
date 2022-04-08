@@ -4,19 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.gensor.cyklobazar.R
 import com.gensor.cyklobazar.activities.Ad.AdActivity
+import com.gensor.cyklobazar.adapters.MainProductAdapter
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.database.FirestoreClass
+import com.gensor.cyklobazar.models.Product
 import com.gensor.cyklobazar.models.User
 import com.gensor.cyklobazar.utils.Session
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main_main.*
+import kotlinx.android.synthetic.main.activity_main_main_content.*
 import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.coroutines.launch
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
    private lateinit var database : Database
@@ -29,6 +35,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         database.loadUser(this)
         nav_view.setNavigationItemSelectedListener(this)
 
+        lifecycleScope.launch {
+            database.getAllAds(this@MainActivity)
+        }
+    }
+
+    fun showProducts(array: ArrayList<Product>){
+        rv_main.layoutManager = LinearLayoutManager(this)
+        rv_main.setHasFixedSize(true)
+        val adapter = MainProductAdapter(array, this, database)
+        rv_main.adapter = adapter
     }
 
     override fun onBackPressed() {

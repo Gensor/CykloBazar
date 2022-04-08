@@ -71,7 +71,7 @@ object ProductFactory {
         brand = data["brand"] as String,
         model = data["model"] as String,
         size = data["size"] as String,
-        material = data["meterial"] as String,
+        material = data["material"] as String,
         price = data["price"] as Long,
         userId = data["userId"] as String,
         image = data["image"] as String

@@ -10,7 +10,7 @@ data class Fork (
     override val model : String = "",
     val travel : Int = 0,
     override val price : Long = 0L,
-    val userId : String = "",
+    override val userId : String = "",
     override val image : String = ""
 
 ): Parcelable, Product{

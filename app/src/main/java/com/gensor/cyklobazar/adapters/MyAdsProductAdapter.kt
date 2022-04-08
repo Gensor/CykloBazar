@@ -14,21 +14,21 @@ import com.gensor.cyklobazar.R.*
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.models.Product
 
-open class ProductAdapter(
+open class MyAdsProductAdapter(
     private var listOfProducts : ArrayList<Product>,
     private val context : Context,
     private val database : Database
-) : RecyclerView.Adapter<ProductAdapter.ViewHolder>(){
+) : RecyclerView.Adapter<MyAdsProductAdapter.ViewHolder>(){
 
     private val TAG : String = "PRODUCY_ADAPTER"
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdsProductAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(layout.activity_my_ads_ad, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyAdsProductAdapter.ViewHolder, position: Int) {
         val product = listOfProducts.get(position)
         Log.i(TAG," product : ${product.toString()}")
         populateFields(product, holder, position)
@@ -37,7 +37,7 @@ open class ProductAdapter(
         }
     }
 
-    private fun populateFields(product: Product, holder: ProductAdapter.ViewHolder, position: Int){
+    private fun populateFields(product: Product, holder: MyAdsProductAdapter.ViewHolder, position: Int){
         Glide
             .with(context)
             .load(product.image)

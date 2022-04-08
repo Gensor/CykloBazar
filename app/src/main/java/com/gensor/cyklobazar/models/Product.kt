@@ -5,4 +5,5 @@ interface Product {
     val brand : String
     val model : String
     val price : Long
+    val userId : String
 }

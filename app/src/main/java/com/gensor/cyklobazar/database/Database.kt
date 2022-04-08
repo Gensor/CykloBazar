@@ -18,5 +18,6 @@ interface Database : Parcelable{
     suspend fun addProduct(product : Product)
     fun deleteProduct(product : Product)
     suspend fun getMyAds(activity: MyAdsActivity)
-    suspend fun getAllAds(): ArrayList<Product>
+    suspend fun getAllAds(activity: MainActivity)
+    suspend fun getUserName(id: String): String
 }

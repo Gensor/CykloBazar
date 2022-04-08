@@ -12,7 +12,7 @@ data class RoadBike(
     override val price : Long = 0,
     val groupSet : String = "",
     val size : String = "",
-    val userId : String = "",
+    override val userId : String = "",
     override val image : String = ""
 ) : Parcelable, Product {
     constructor(parcel: Parcel) : this(

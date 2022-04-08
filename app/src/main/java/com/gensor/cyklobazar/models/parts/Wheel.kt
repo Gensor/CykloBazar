@@ -11,7 +11,7 @@ data class Wheel (
     val size : String = "",
     val material : String = "",
     override val price : Long = 0L,
-    val userId : String = "",
+    override val userId : String = "",
     override val image : String = ""
 ) : Parcelable, Product {
     constructor(parcel: Parcel) : this(

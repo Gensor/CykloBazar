@@ -13,7 +13,7 @@ data class MountainBike (
     val fork: String = "",
     val wheelSize: String = "",
     val dropperPost: Boolean = false,
-    val userId : String = "",
+    override val userId : String = "",
     override val image : String = ""
 ): Parcelable, Product {
     constructor(parcel: Parcel) : this(
