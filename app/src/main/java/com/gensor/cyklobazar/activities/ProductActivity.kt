@@ -15,7 +15,10 @@ class ProductActivity : BaseActivity() {
 
         val bundle = intent.getBundleExtra("bundle")
         val product = bundle?.getParcelable<Product>("product")
-        tv_product_ad.text = product.toString()
+        tv_product_brand.text = product?.brand
+        tv_product_model.text = product?.model
+        tv_product_price.text = "€ ${product?.price}"
+        tv_product_toString.text = product.toString()
 
         if (product != null) {
             Glide
@@ -40,7 +43,7 @@ class ProductActivity : BaseActivity() {
         val actionBar = supportActionBar
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setHomeAsUpIndicator(com.google.android.material.R.drawable.abc_ic_ab_back_material)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_keyboard_double_arrow_left_24)
             actionBar.setDisplayShowTitleEnabled(false)
         }
         toolbar_product_top?.setNavigationOnClickListener {

@@ -50,4 +50,5 @@
     <dimen name="ad_linearlayout_product_field_padding">8dp</dimen>
     <dimen name="myAds_ad_price_text_size">20sp</dimen>
     <dimen name="myAds_ad_cornerRadius">8dp</dimen>
+    <dimen name="button_cornerRadius">20dp</dimen>
 </resources>
