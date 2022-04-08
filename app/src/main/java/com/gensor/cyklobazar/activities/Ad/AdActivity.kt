@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
@@ -305,8 +304,8 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
             year = et_ad_ebike_year.text.toString().toInt()
         if(et_ad_ebike_price.text.toString().isNotEmpty())
             price = et_ad_ebike_price.text.toString().toLong()
-        if(et_ad_ebike_kw.text.toString().isNotEmpty())
-            kw = et_ad_ebike_kw.text.toString().toInt()
+        if(et_ad_ebike_power.text.toString().isNotEmpty())
+            kw = et_ad_ebike_power.text.toString().toInt()
         if(et_ad_ebike_battery.text.toString().isNotEmpty())
             batteryCapacity = et_ad_ebike_battery.text.toString().toInt()
         val image = imageUrl

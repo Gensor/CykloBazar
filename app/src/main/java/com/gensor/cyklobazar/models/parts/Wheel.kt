@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.gensor.cyklobazar.models.Product
 
 data class Wheel (
-    val id : String = "",
+    override val id : String = "",
     override val brand : String = "",
     override val model : String = "",
     val size : String = "",
@@ -49,6 +49,13 @@ data class Wheel (
         override fun newArray(size: Int): Array<Wheel?> {
             return arrayOfNulls(size)
         }
+    }
+
+    override fun toString(): String {
+        return """
+            <b>SIZE</b>: $size<br>
+            <b>MATERIAL</b>: $material
+        """.trimIndent()
     }
 
 }

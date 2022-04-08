@@ -56,6 +56,7 @@ class MainProductAdapter(
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelable("product", product)
+            bundle.putParcelable("database", database)
             context.startActivity(Intent(context, ProductActivity::class.java)
                 .putExtra("bundle", bundle))
         }

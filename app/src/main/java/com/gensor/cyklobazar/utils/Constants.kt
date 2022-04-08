@@ -12,6 +12,7 @@ object Constants {
     const val USERS: String = "users"
     const val USER_IMAGE : String = "image"
     const val USER_NAME : String = "name"
+    const val USER_ID : String = "id"
     const val USER_EMAIL : String = "email"
     const val EBIKE : String = "ebike"
     const val MOUNTAINBIKE: String = "mountainBike"

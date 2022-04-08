@@ -242,8 +242,6 @@ class FirestoreClass() : Database {
     override suspend fun getMyAds(activity: MyAdsActivity) {
         val array = ArrayList<Product>()
 
-        val collections = arrayOf(Constants.EBIKE, Constants.FORK, Constants.MOUNTAINBIKE, Constants.ROADBIKE, Constants.WHEEL)
-
         for (colection in collections){
             val documents = fireStore.collection(colection).whereEqualTo(Constants.PRODUCT_USER_ID, getUserId()).get().await()
             documents.documents.forEach {
@@ -267,8 +265,6 @@ class FirestoreClass() : Database {
     override suspend fun getAllAds(activity: MainActivity) {
         val array = ArrayList<Product>()
 
-        val collections = arrayOf(Constants.EBIKE, Constants.FORK, Constants.MOUNTAINBIKE, Constants.ROADBIKE, Constants.WHEEL)
-
         for (colection in collections){
             val documents = fireStore.collection(colection).get().await()
             documents.documents.forEach {
@@ -284,6 +280,26 @@ class FirestoreClass() : Database {
         Log.i(TAG,array.toString())
 
         activity.showProducts(array)
+    }
+
+    override suspend fun getUserEmail(productId : String): String {
+        var email = ""
+Log.i(TAG, " product id : $productId ")
+        for (colection in collections){
+            val document = fireStore.collection(colection).document(productId).get().await()
+            Log.i(TAG, " $document ")
+            if (document.exists()){
+                Log.i(TAG, " document exist !!! ")
+                val userId = document.getString(Constants.PRODUCT_USER_ID)
+                Log.i(TAG, " userid : $userId")
+                val user = fireStore.collection(Constants.USERS).document(userId!!).get().await()
+                Log.i(TAG, "user: $user ")
+                email = user.getString(Constants.USER_EMAIL)!!
+                Log.i(TAG, " email: $email")
+            }
+        }
+        Log.i(TAG, " posielam email : $email")
+        return email
     }
 
     override suspend fun getUserName(id: String): String{

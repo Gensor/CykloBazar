@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.gensor.cyklobazar.models.Product
 
 data class MountainBike (
-    val id : String = "",
+    override val id : String = "",
     override val brand: String = "",
     override val model: String = "",
     val year: Int = 0,
@@ -55,6 +55,17 @@ data class MountainBike (
         override fun newArray(size: Int): Array<MountainBike?> {
             return arrayOfNulls(size)
         }
+    }
+
+    override fun toString(): String {
+        var droper = ""
+        if (dropperPost) droper = "Yes" else droper = "No"
+        return """
+            <b>YEAR</b>: $year<br>
+            <b>FORK</b>: $fork<br>
+            <b>WHEEL SIZE</b>: $wheelSize<br>
+            <b>DROPPER POST</b>: $droper
+        """.trimIndent()
     }
 
 

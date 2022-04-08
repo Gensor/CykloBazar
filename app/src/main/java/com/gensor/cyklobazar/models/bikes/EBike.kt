@@ -5,13 +5,13 @@ import android.os.Parcelable
 import com.gensor.cyklobazar.models.Product
 
 data class EBike (
-    val id : String = "",
+    override val id : String = "",
     override val brand: String = "",
     override val model: String = "",
     val year: Int = 0,
     override val price: Long = 0L,
     val motor: String = "",
-    val kw: Int = 0,
+    val power: Int = 0,
     val batteryCapacity: Int = 0,
     override val userId : String = "",
     override val image : String = ""
@@ -37,7 +37,7 @@ data class EBike (
         parcel.writeInt(year)
         parcel.writeLong(price)
         parcel.writeString(motor)
-        parcel.writeInt(kw)
+        parcel.writeInt(power)
         parcel.writeInt(batteryCapacity)
         parcel.writeString(userId)
         parcel.writeString(image)
@@ -57,5 +57,13 @@ data class EBike (
         }
     }
 
+    override fun toString(): String {
+        return """
+            <b>YEAR</b>: $year <br>
+            <b>MOTOR</b>: $motor<br>
+            <b>POWER</b>: $power W<br>
+            <b>BATTERY CAPACITY</b>: $batteryCapacity Wh
+        """.trimIndent()
+    }
 
 }
