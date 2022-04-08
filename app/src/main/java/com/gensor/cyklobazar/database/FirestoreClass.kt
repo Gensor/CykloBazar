@@ -211,6 +211,10 @@ class FirestoreClass() : Database {
     metoda na vymazanie dokumentu z kolekcie podla id
      */
     override fun deleteProduct(product: Product) {
+        FirebaseStorage.getInstance()
+            .getReferenceFromUrl(product.image)
+            .delete()
+
         when(product){
             is EBike -> {
                 fireStore.collection(Constants.EBIKE).document(product.id).delete()
