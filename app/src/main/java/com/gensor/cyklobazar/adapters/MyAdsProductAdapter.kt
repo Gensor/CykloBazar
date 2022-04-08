@@ -2,7 +2,8 @@ package com.gensor.cyklobazar.adapters
 
 import android.app.AlertDialog
 import android.content.Context
-import android.util.Log
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gensor.cyklobazar.R.*
+import com.gensor.cyklobazar.activities.ProductActivity
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.models.Product
 
@@ -20,7 +22,8 @@ open class MyAdsProductAdapter(
     private val database : Database
 ) : RecyclerView.Adapter<MyAdsProductAdapter.ViewHolder>(){
 
-    private val TAG : String = "PRODUCY_ADAPTER"
+    private val TAG : String = "PRODUCT_ADAPTER"
+    private val list = listOfProducts
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdsProductAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -29,11 +32,22 @@ open class MyAdsProductAdapter(
     }
 
     override fun onBindViewHolder(holder: MyAdsProductAdapter.ViewHolder, position: Int) {
-        val product = listOfProducts.get(position)
-        Log.i(TAG," product : ${product.toString()}")
+        val product = list.get(position)
         populateFields(product, holder, position)
-        holder.itemView.setOnClickListener {
-            //TODO: sprav fragment s obrazkom a toStringom
+        holder.deleteImage.setOnClickListener {
+            AlertDialog.Builder(context)
+                .setMessage("Are you sure?")
+                .setCancelable(false)
+                .setPositiveButton("Yes"){ dialog, id ->
+                    database.deleteProduct(product)
+                    list.removeAt(position)
+                    notifyDataSetChanged()
+                }
+                .setNegativeButton("No"){dialog, id ->
+                    dialog.dismiss()
+                }
+                .create()
+                .show()
         }
     }
 
@@ -47,24 +61,17 @@ open class MyAdsProductAdapter(
 
         holder.title.text = "${product.brand} ${product.model}"
         holder.price.text = "Price: ${product.price} €"
-        holder.deleteImage.setOnClickListener {
-            AlertDialog.Builder(context)
-                .setMessage("Are you sure?")
-                .setCancelable(false)
-                .setPositiveButton("Yes"){ dialog, id ->
-                    database.deleteProduct(product)
-                    listOfProducts.removeAt(position)
-                    notifyItemRemoved(position)
-                }
-                .setNegativeButton("No"){dialog, id ->
-                    dialog.dismiss()
-                }
-                .create()
-                .show()
+
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable("product", product)
+            context.startActivity(Intent(context, ProductActivity::class.java)
+                .putExtra("bundle", bundle))
         }
+
     }
     override fun getItemCount(): Int {
-        return listOfProducts.size
+        return list.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

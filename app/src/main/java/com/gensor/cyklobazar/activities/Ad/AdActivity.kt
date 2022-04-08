@@ -86,52 +86,62 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
 
     override fun onClick(view : View){
         lifecycleScope.launch {
+
             when(view.id){
                 R.id.button_adActivity_save_ebike -> {
+                    showProgressDialog("Please wait")
                     productData = getEBikeData()
                     uploadProductImage()
                     val ebike = ProductFactory.createProduct(Constants.EBIKE, productData)
-                        Log.i(TAG,"ebike going to db: ${ebike.toString()}")
                     if (ebike != null)
                         database?.addProduct(ebike)
                     else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    hideProgressDialog()
                     onBackPressed()
 
                 }
                 R.id.button_adActivity_save_roadBike -> {
+                    showProgressDialog("Please wait")
                     productData = getRoadBikeData()
                     uploadProductImage()
                     val roadBike = ProductFactory.createProduct(Constants.ROADBIKE, productData)
                     if (roadBike != null)
                         database?.addProduct(roadBike)
                     else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    hideProgressDialog()
                     onBackPressed()
                 }
                 R.id.button_adActivity_save_fork -> {
+                    showProgressDialog("Please wait")
                     productData = getForkData()
                     uploadProductImage()
                     val fork = ProductFactory.createProduct(Constants.FORK, productData)
                     if(fork != null)
                         database?.addProduct(fork)
                     else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    hideProgressDialog()
                     onBackPressed()
                 }
                 R.id.button_adActivity_save_mountainBike -> {
+                    showProgressDialog("Please wait")
                     productData = getMountainBikeData()
                     uploadProductImage()
                     val mountainBike = ProductFactory.createProduct(Constants.MOUNTAINBIKE, productData)
                     if(mountainBike != null)
                         database?.addProduct(mountainBike)
                     else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    hideProgressDialog()
                     onBackPressed()
                 }
                 R.id.button_adActivity_save_wheel -> {
+                    showProgressDialog("Please wait")
                     productData = getWheelData()
                     uploadProductImage()
                     val wheel = ProductFactory.createProduct(Constants.WHEEL, productData)
                     if(wheel != null)
                         database?.addProduct(wheel)
                     else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    hideProgressDialog()
                     onBackPressed()
                 }
                 R.id.button_adActivity_image -> {
@@ -149,17 +159,16 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
     }
 
     fun setImageUrl(url : String){
-        Log.i(TAG,"setting imageurl in setImageUrl: $url")
         imageUrl = url
         productData["image"] = imageUrl
     }
 
     private suspend fun uploadProductImage(){
 
-            if(selectedImageFileUri != null){
-                val imageByteArray = Constants.reduceImageSize(this@AdActivity, selectedImageFileUri!!)
-                database?.uploadProductImage(imageByteArray, this@AdActivity)
-            }
+        if(selectedImageFileUri != null){
+            val imageByteArray = Constants.reduceImageSize(this@AdActivity, selectedImageFileUri!!)
+            database?.uploadProductImage(imageByteArray, this@AdActivity)
+        }
 
 
     }

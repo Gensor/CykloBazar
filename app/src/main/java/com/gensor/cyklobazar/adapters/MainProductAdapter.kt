@@ -1,6 +1,8 @@
 package com.gensor.cyklobazar.adapters
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gensor.cyklobazar.R
+import com.gensor.cyklobazar.activities.ProductActivity
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.models.Product
 import kotlinx.coroutines.*
@@ -30,13 +33,9 @@ class MainProductAdapter(
 
     override fun onBindViewHolder(holder: MainProductAdapter.ViewHolder, position: Int) {
         val product = listOfProducts.get(position)
-        Log.i(TAG," product : ${product.toString()}")
         GlobalScope.launch(Dispatchers.Main){
 
         populateFields(product, holder, position)
-        }
-        holder.itemView.setOnClickListener {
-            //TODO: sprav fragment s obrazkom a toStringom
         }
     }
 
@@ -54,6 +53,12 @@ class MainProductAdapter(
 
         holder.postedBy.text = database.getUserName(product.userId)
 
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable("product", product)
+            context.startActivity(Intent(context, ProductActivity::class.java)
+                .putExtra("bundle", bundle))
+        }
 
 
     }

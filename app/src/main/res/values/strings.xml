@@ -38,6 +38,7 @@
     <string name="price_ad">price: $f Euro</string>
     <string name="no_ads_available">No Ads Available</string>
     <string name="empty">Empty</string>
+    <string name="ad">Ad</string>
 
     <string-array name="ad_productCategory_spinner">
         <item name="bikes" type="string">Bikes</item>

@@ -1,6 +1,8 @@
 package com.gensor.cyklobazar.models
 
-interface Product {
+import android.os.Parcelable
+
+interface Product : Parcelable{
     val image : String
     val brand : String
     val model : String
