@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.gensor.cyklobazar.R
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.models.User
@@ -96,6 +97,7 @@ class ProfileActivity :  BaseActivity() {
                 .load(selectedImageFileUri)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
+                .transform(CircleCrop())
                 .placeholder(R.drawable.ic_baseline_person_24)
                 .into(iv_profile_user_image)
         }
@@ -106,13 +108,16 @@ class ProfileActivity :  BaseActivity() {
      */
     fun populateFieldsFromDatabase(user : User) {
         loggedUser = user
+
         Glide
             .with(this)
             .load(user.image)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .centerCrop()
+            .transform(CircleCrop())
             .placeholder(resources.getDrawable(R.drawable.ic_baseline_person_24,theme))
             .into(iv_profile_user_image)
+
         et_profile_name.setText(user.name)
         et_profile_email.setText(user.email)
 
@@ -163,7 +168,7 @@ class ProfileActivity :  BaseActivity() {
         }
 
         if (anyChange == true)
-        database?.updateUser(this, user)
+            database?.updateUser(this, user)
     }
 
 

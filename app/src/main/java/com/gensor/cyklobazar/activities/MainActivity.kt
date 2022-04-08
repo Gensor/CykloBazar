@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.gensor.cyklobazar.R
 import com.gensor.cyklobazar.activities.Ad.AdActivity
 import com.gensor.cyklobazar.database.Database
@@ -115,6 +116,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         .load(user.image)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .centerCrop()
+                        .transform(CircleCrop())
                         .placeholder(resources.getDrawable(R.drawable.ic_baseline_person_24,theme))
                         .into(iv_user_image)
 

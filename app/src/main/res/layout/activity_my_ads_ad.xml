@@ -6,7 +6,7 @@
     android:background="@android:color/white"
     android:layout_marginBottom="5dp"
     android:elevation="8dp"
-    app:cardCornerRadius="16dp">
+    app:cardCornerRadius="@dimen/myAds_ad_cornerRadius">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,14 +18,20 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             >
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/myAds_ad_cornerRadius">
 
             <ImageView
                 android:id="@+id/iv_myAds_ad_productImage"
+
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/ic_baseline_insert_photo_24"
                 >
             </ImageView>
+    </androidx.cardview.widget.CardView>
         </LinearLayout>
 
         <LinearLayout

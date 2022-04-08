@@ -2,17 +2,14 @@ package com.gensor.cyklobazar.adapters
 
 import android.app.AlertDialog
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.os.AsyncTask
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gensor.cyklobazar.R.*
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.models.Product
@@ -41,13 +38,12 @@ open class ProductAdapter(
     }
 
     private fun populateFields(product: Product, holder: ProductAdapter.ViewHolder){
-        /*Glide
+        Glide
             .with(context)
             .load(product.image)
             .centerCrop()
             .placeholder(drawable.ic_baseline_insert_photo_24)
-            .into(holder.productImage)*/
-        DownloadImageFromInternet(holder.productImage).execute(product.image)
+            .into(holder.productImage)
 
         holder.title.text = "${product.brand} ${product.model}"
         holder.price.text = "Price: ${product.price} €"
@@ -85,31 +81,6 @@ open class ProductAdapter(
 
         }
     }
-
-
-    ///
-    private inner class DownloadImageFromInternet(var imageView: ImageView) : AsyncTask<String, Void, Bitmap?>() {
-        init {
-            Toast.makeText(context, "Please wait, it may take a few seconds...",     Toast.LENGTH_SHORT).show()
-        }
-        override fun doInBackground(vararg urls: String): Bitmap? {
-            val imageURL = urls[0]
-            var image: Bitmap? = null
-            try {
-                val `in` = java.net.URL(imageURL).openStream()
-                image = BitmapFactory.decodeStream(`in`)
-            }
-            catch (e: Exception) {
-                Log.e("Error Message", e.message.toString())
-                e.printStackTrace()
-            }
-            return image
-        }
-        override fun onPostExecute(result: Bitmap?) {
-            imageView.setImageBitmap(result)
-        }
-    }
-    ///
 
 
 }

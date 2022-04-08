@@ -49,4 +49,5 @@
     <dimen name="nav_divider_height">0.5dp</dimen>
     <dimen name="ad_linearlayout_product_field_padding">8dp</dimen>
     <dimen name="myAds_ad_price_text_size">20sp</dimen>
+    <dimen name="myAds_ad_cornerRadius">8dp</dimen>
 </resources>
