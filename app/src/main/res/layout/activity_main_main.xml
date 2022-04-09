@@ -13,16 +13,12 @@
         android:layout_height="wrap_content"
         android:theme="@style/Theme.CykloBazar.AppBarOverlay">
 
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_main_activity"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.CykloBazar.PopupOverlay">
-
-        </androidx.appcompat.widget.Toolbar>
-
+            app:popupTheme="@style/Theme.CykloBazar.PopupOverlay"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -2,6 +2,7 @@ package com.gensor.cyklobazar.activities
 
 import android.os.Bundle
 import android.text.Html
+import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -20,6 +21,9 @@ class ProductActivity : BaseActivity() {
         val product = bundle?.getParcelable<Product>("product")
         val database = bundle?.getParcelable<Database>("database")
         lifecycleScope.launch{
+            tv_product_toString.visibility = View.GONE
+            progressBar_product.visibility = View.VISIBLE
+
             var email = ""
             if(product != null && database != null){
                 email = database.getUserEmail(product.id)
@@ -30,6 +34,9 @@ class ProductActivity : BaseActivity() {
             tv_product_price.text = "€ ${product?.price}"
             tv_product_postedBy.text = Html.fromHtml("Posted by <b>$email<b>")
             tv_product_toString.text = Html.fromHtml(product.toString())
+
+            progressBar_product.visibility = View.GONE
+            tv_product_toString.visibility = View.VISIBLE
         }
         if (product != null) {
             Glide

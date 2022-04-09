@@ -19,6 +19,11 @@ import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.factories.ProductFactory
 import com.gensor.cyklobazar.utils.Constants
 import kotlinx.android.synthetic.main.activity_ad.*
+import kotlinx.android.synthetic.main.product_ebike.*
+import kotlinx.android.synthetic.main.product_fork.*
+import kotlinx.android.synthetic.main.product_mountain_bike.*
+import kotlinx.android.synthetic.main.product_road_bike.*
+import kotlinx.android.synthetic.main.product_wheel.*
 import kotlinx.coroutines.launch
 
 class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -79,7 +84,6 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
         button_adActivity_cancel_roadBike.setOnClickListener(this)
         button_adActivity_cancel_wheel.setOnClickListener(this)
         button_adActivity_image.setOnClickListener(this)
-
 
     }
 
@@ -153,7 +157,6 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
                 }
                 else -> onBackPressed()
             }
-
         }
     }
 
@@ -163,13 +166,10 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
     }
 
     private suspend fun uploadProductImage(){
-
         if(selectedImageFileUri != null){
             val imageByteArray = Constants.reduceImageSize(this@AdActivity, selectedImageFileUri!!)
             database?.uploadProductImage(imageByteArray, this@AdActivity)
         }
-
-
     }
 
     /*
@@ -188,7 +188,6 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
             finish()
         }
     }
-
 
     /*
     Nastavenie spinnera v kategórii produktov

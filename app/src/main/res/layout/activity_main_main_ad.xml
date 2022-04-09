@@ -7,8 +7,7 @@
     android:layout_marginBottom="8dp"
     app:cardElevation="10dp"
     android:outlineSpotShadowColor="@color/colorPrimaryDark"
-    app:cardCornerRadius="@dimen/myAds_ad_cornerRadius"
-    >
+    app:cardCornerRadius="@dimen/myAds_ad_cornerRadius">
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"

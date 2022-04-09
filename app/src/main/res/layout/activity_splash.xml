@@ -17,6 +17,5 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="@dimen/splash_screen_title_text_size"
-        android:fontFamily="@scro"
-        />
+        android:fontFamily="@scro"/>
 </LinearLayout>

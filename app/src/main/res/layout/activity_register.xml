@@ -21,7 +21,6 @@
             android:text="@string/register_toolbar_register"/>
     </androidx.appcompat.widget.Toolbar>
 
-
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -85,12 +84,6 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
-
-
-
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_register"
                 app:cornerRadius="@dimen/button_cornerRadius"
@@ -98,11 +91,8 @@
                 android:layout_height="@dimen/button_height"
                 android:text="@string/register_button" />
 
-
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

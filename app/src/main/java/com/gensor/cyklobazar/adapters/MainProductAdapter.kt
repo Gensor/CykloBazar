@@ -3,7 +3,6 @@ package com.gensor.cyklobazar.adapters
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +34,7 @@ class MainProductAdapter(
         val product = listOfProducts.get(position)
         GlobalScope.launch(Dispatchers.Main){
 
-        populateFields(product, holder, position)
+            populateFields(product, holder, position)
         }
     }
 

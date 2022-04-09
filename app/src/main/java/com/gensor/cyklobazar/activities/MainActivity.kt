@@ -22,12 +22,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main_main.*
 import kotlinx.android.synthetic.main.activity_main_main_content.*
-import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.coroutines.launch
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-   private lateinit var database : Database
+    private lateinit var database : Database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

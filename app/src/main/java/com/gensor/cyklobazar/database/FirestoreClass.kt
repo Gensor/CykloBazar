@@ -83,7 +83,7 @@ class FirestoreClass() : Database {
 
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w("Login", "signInWithEmail:failure", task.exception)
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(
                         activity.baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT
@@ -172,14 +172,18 @@ class FirestoreClass() : Database {
             .document(getUserId())
             .update(userHashMap)
             .addOnSuccessListener {
-                Log.i(activity.javaClass.simpleName, "updated successfully")
                 Toast.makeText(activity, "updated successfully", Toast.LENGTH_SHORT).show()
                 loadUser(activity)
             }.addOnFailureListener {
                     error -> activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "error updating")
                 Toast.makeText(activity, "error updating", Toast.LENGTH_SHORT).show()
             }
+        if (userHashMap[Constants.USER_EMAIL] != null){
+            val user = auth.currentUser
+            if (user != null) {
+                user.updateEmail(userHashMap[Constants.USER_EMAIL].toString())
+            }
+        }
     }
 
     override suspend fun addProduct(product: Product) {
@@ -254,7 +258,6 @@ class FirestoreClass() : Database {
                 }
             }
         }
-        Log.i(TAG,array.toString())
         activity.showProducts(array)
 
     }
@@ -277,28 +280,22 @@ class FirestoreClass() : Database {
                 }
             }
         }
-        Log.i(TAG,array.toString())
 
         activity.showProducts(array)
     }
 
     override suspend fun getUserEmail(productId : String): String {
         var email = ""
-Log.i(TAG, " product id : $productId ")
+
         for (colection in collections){
             val document = fireStore.collection(colection).document(productId).get().await()
-            Log.i(TAG, " $document ")
+
             if (document.exists()){
-                Log.i(TAG, " document exist !!! ")
                 val userId = document.getString(Constants.PRODUCT_USER_ID)
-                Log.i(TAG, " userid : $userId")
                 val user = fireStore.collection(Constants.USERS).document(userId!!).get().await()
-                Log.i(TAG, "user: $user ")
                 email = user.getString(Constants.USER_EMAIL)!!
-                Log.i(TAG, " email: $email")
             }
         }
-        Log.i(TAG, " posielam email : $email")
         return email
     }
 

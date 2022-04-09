@@ -59,7 +59,8 @@ open class MyAdsProductAdapter(
             .placeholder(drawable.ic_baseline_insert_photo_24)
             .into(holder.productImage)
 
-        holder.title.text = "${product.brand} ${product.model}"
+        holder.brand.text = "${product.brand}"
+        holder.model.text = "${product.model}"
         holder.price.text = "Price: ${product.price} €"
 
         holder.itemView.setOnClickListener {
@@ -76,14 +77,16 @@ open class MyAdsProductAdapter(
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var title : TextView
+        var brand : TextView
         var productImage : ImageView
+        var model : TextView
         var price : TextView
         var deleteImage : ImageView
 
 
         init{
-            title = itemView.findViewById(id.tv_myAds_ad_name)
+            brand = itemView.findViewById(id.tv_myAds_ad_brand)
+            model = itemView.findViewById(id.tv_myAds_ad_model)
             productImage = itemView.findViewById(id.iv_myAds_ad_productImage)
             price = itemView.findViewById(id.tv_myAds_ad_price)
             deleteImage = itemView.findViewById(id.button_myAds_ad_delete)

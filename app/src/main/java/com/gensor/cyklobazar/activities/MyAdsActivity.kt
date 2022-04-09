@@ -9,7 +9,6 @@ import com.gensor.cyklobazar.R
 import com.gensor.cyklobazar.adapters.MyAdsProductAdapter
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.models.Product
-import kotlinx.android.synthetic.main.activity_main_main_content.*
 import kotlinx.android.synthetic.main.activity_my_ads.*
 import kotlinx.coroutines.launch
 
@@ -25,7 +24,7 @@ class MyAdsActivity : BaseActivity() {
         lifecycleScope.launch {
             rv_myAds.visibility = View.GONE
             progressBar_myAds.visibility = View.VISIBLE
-        database.getMyAds(this@MyAdsActivity)
+            database.getMyAds(this@MyAdsActivity)
             progressBar_myAds.visibility = View.GONE
             rv_myAds.visibility = View.VISIBLE
         }
@@ -40,7 +39,7 @@ class MyAdsActivity : BaseActivity() {
         val actionBar = supportActionBar
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setHomeAsUpIndicator(com.google.android.material.R.drawable.abc_ic_ab_back_material)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_keyboard_double_arrow_left_24)
             actionBar.setDisplayShowTitleEnabled(false)
         }
         toolbar_myAds_top?.setNavigationOnClickListener {
@@ -49,13 +48,13 @@ class MyAdsActivity : BaseActivity() {
         }
     }
 
-     fun showProducts(listOfProducts : ArrayList<Product>){
+    fun showProducts(listOfProducts : ArrayList<Product>){
 
-            rv_myAds.layoutManager = LinearLayoutManager(this)
-            rv_myAds.setHasFixedSize(true)
+        rv_myAds.layoutManager = LinearLayoutManager(this)
+        rv_myAds.setHasFixedSize(true)
 
-            val adapter = MyAdsProductAdapter(listOfProducts, this, database)
-            rv_myAds.adapter = adapter
+        val adapter = MyAdsProductAdapter(listOfProducts, this, database)
+        rv_myAds.adapter = adapter
 
     }
 }
