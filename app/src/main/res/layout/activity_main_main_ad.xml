@@ -4,18 +4,24 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="8dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginBottom="8dp"
+    app:cardElevation="10dp"
+    android:outlineSpotShadowColor="@color/colorPrimaryDark"
     app:cardCornerRadius="@dimen/myAds_ad_cornerRadius"
     >
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:orientation="vertical"
         >
         <TextView
             android:id="@+id/tv_main_main_brand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="16sp"
             android:text="">
         </TextView>
         <ImageView
@@ -37,6 +43,7 @@
             <TextView
                 android:id="@+id/tv_main_main_price"
                 android:layout_width="match_parent"
+                android:textSize="18sp"
                 android:layout_height="match_parent"
                 android:text=""
                 android:textAlignment="viewEnd">

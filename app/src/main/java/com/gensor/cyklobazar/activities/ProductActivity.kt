@@ -54,7 +54,7 @@ class ProductActivity : BaseActivity() {
         val actionBar = supportActionBar
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_keyboard_double_arrow_left_24)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_keyboard_double_arrow_left_1_24)
             actionBar.setDisplayShowTitleEnabled(false)
         }
         toolbar_product_top?.setNavigationOnClickListener {
