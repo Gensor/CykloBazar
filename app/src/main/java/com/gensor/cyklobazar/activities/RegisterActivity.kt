@@ -32,7 +32,7 @@ class RegisterActivity : BaseActivity() {
         val actionBar = supportActionBar
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setHomeAsUpIndicator(com.google.android.material.R.drawable.abc_ic_ab_back_material)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_keyboard_double_arrow_left_24)
             actionBar.setDisplayShowTitleEnabled(false)
         }
         toolbar_register?.setNavigationOnClickListener {

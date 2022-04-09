@@ -1,36 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".activities.MyAdsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_myAds_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/splash_screen_title_text_size"
-        >
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_myAds_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/my_ads"
-            android:layout_marginEnd="10dp"/>
+            android:textSize="@dimen/toolbar_title_text_size"
+            android:text="@string/my_ads" />
     </androidx.appcompat.widget.Toolbar>
 
+
+    <ProgressBar
+        android:id="@+id/progressBar_myAds"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_myAds_top" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_myAds"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_myAds_top" >
 
 
     </androidx.recyclerview.widget.RecyclerView>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

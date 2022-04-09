@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_ad_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/splash_screen_title_text_size"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -17,8 +17,8 @@
             android:id="@+id/tv_ad_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ad_toolbar_ad"
-            android:layout_marginEnd="10dp"/>
+            android:textSize="@dimen/toolbar_title_text_size"
+            android:text="@string/ad_toolbar_ad"/>
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
@@ -65,12 +65,10 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/linnearLayout_ad_spinners"
-        >
+        app:layout_constraintTop_toBottomOf="@id/linnearLayout_ad_spinners">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView_adActivity_Product"
@@ -89,24 +87,23 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_adActivity_image"
                         android:layout_width="match_parent"
+                        app:cornerRadius="@dimen/button_cornerRadius"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_height="wrap_content"
                         android:text="@string/choose_image"
-                        >
-
-                    </Button>
+                        />
 
                     <LinearLayout
                         android:id="@+id/linearLayout_adActivity_bikes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="8dp"
                         android:orientation="vertical">
 
                         //E-Bike
@@ -122,158 +119,116 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <LinearLayout
+                                //brand:
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_ebike_brand"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        android:text="@string/brand"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/brand">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_ebike_brand"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
 
-                                <LinearLayout
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                //model
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_ebike_model"
-                                        android:text="@string/model"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"/>
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/model">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_ebike_model"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
 
                                 //year int
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_ebike_year"
-                                        android:text="@string/year"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"/>
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/year">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_ebike_year"
-                                        android:inputType="number"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="number" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
 
                                 //motor string
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_ebike_motor"
-                                        android:text="@string/motor"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/motor">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_ebike_motor"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
 
                                 //power int
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_ebike_power"
-                                        android:text="@string/power"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/power">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_ebike_power"
-                                        android:inputType="number"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="number" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
 
                                 //battery capacity int
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_ebike_battery"
-                                        android:text="@string/batteryCapacity"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/batteryCapacity">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_ebike_battery"
-                                        android:inputType="number"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="number" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
 
                                 //price long
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_ebike_price"
-                                        android:text="@string/price"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"/>
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/price">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_ebike_price"
-                                        android:inputType="numberDecimal"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="numberDecimal" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
 
                             </LinearLayout>
 
@@ -282,18 +237,21 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:orientation="horizontal">
-                                <Button
+                                <com.google.android.material.button.MaterialButton
                                     android:id="@+id/button_adActivity_save_ebike"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    app:cornerRadius="@dimen/button_cornerRadius"
+                                    android:layout_marginEnd="@dimen/btn_marginStartEnd"
                                     android:text="@string/save">
-                                </Button>
-                                <Button
+                                </com.google.android.material.button.MaterialButton>
+                                <com.google.android.material.button.MaterialButton
                                     android:id="@+id/button_adActivity_cancel"
                                     android:layout_width="wrap_content"
+                                    app:cornerRadius="@dimen/button_cornerRadius"
                                     android:layout_height="wrap_content"
                                     android:text="@string/cancel">
-                                </Button>
+                                </com.google.android.material.button.MaterialButton>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -309,155 +267,110 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    >
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_roadbike_brand"
-                                        android:text="@string/brand"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/brand">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_roadbike_brand"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:id="@+id/tv_ad_roadbike_model"
-                                        android:text="@string/model"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/model">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_roadbike_model"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-                                //year int
-                                <LinearLayout
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_roadbike_year"
-                                        android:text="@string/year"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/year">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_roadbike_year"
-                                        android:inputType="number"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="number" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
 
                                 //group set string
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_roadbike_groupSet"
-                                        android:text="@string/groupSet"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/groupSet">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_roadbike_groupSet"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
 
                                 //size string
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_roadbike_size"
-                                        android:text="@string/roadBikeSize"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/roadBikeSize">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_roadbike_size"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
                                 //price long
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_roadbike_price"
-                                        android:text="@string/price"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/price">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_roadbike_price"
-                                        android:inputType="numberDecimal"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="numberDecimal" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:orientation="horizontal">
-                                    <Button
+                                    <com.google.android.material.button.MaterialButton
                                         android:id="@+id/button_adActivity_save_roadBike"
                                         android:layout_width="wrap_content"
+                                        app:cornerRadius="@dimen/button_cornerRadius"
+                                        android:layout_marginEnd="@dimen/btn_marginStartEnd"
                                         android:layout_height="wrap_content"
                                         android:text="@string/save">
-                                    </Button>
-                                    <Button
+                                    </com.google.android.material.button.MaterialButton>
+                                    <com.google.android.material.button.MaterialButton
                                         android:id="@+id/button_adActivity_cancel_roadBike"
+                                        app:cornerRadius="@dimen/button_cornerRadius"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/cancel">
-                                    </Button>
+                                    </com.google.android.material.button.MaterialButton>
                                 </LinearLayout>
 
                             </LinearLayout>
@@ -474,186 +387,115 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    >
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_mountainBike_brand"
-                                        android:text="@string/brand"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/brand">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_mountainBike_brand"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-                                    <TextView
-                                        android:id="@+id/tv_ad_mountainBike_model"
-                                        android:text="@string/model"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/model">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_mountainBike_model"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-                                //year int
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_mountainBike_year"
-                                        android:text="@string/year"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/year">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_mountainBike_year"
-                                        android:inputType="number"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="number" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-                                //fork set string
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_mountainBike_fork"
-                                        android:text="@string/fork"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/fork">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_mountainBike_fork"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-                                //wheel size string
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_mountainBike_wheelSize"
-                                        android:text="@string/wheel_size"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/wheel_size">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_mountainBike_wheelSize"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-                                //dropper post boolean
-                                <LinearLayout
+                                <com.google.android.material.switchmaterial.SwitchMaterial
+                                    android:layout_marginBottom="8dp"
+                                    android:id="@+id/switch_ad_mountainBike_dropperPost"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
+                                    android:textAlignment="center"
+                                    android:text="@string/dropper_post" />
 
-                                    <TextView
-                                        android:id="@+id/tv_ad_mountainBike_dropperPost"
-                                        android:text="@string/dropper_post"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-
-                                    <androidx.appcompat.widget.SwitchCompat
-                                        android:id="@+id/switch_ad_mountainBike_dropperPost"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="0.8"
-                                        />
-
-                                    />
-                                </LinearLayout>
-
-                                //price long
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_mountainBike_price"
-                                        android:text="@string/price"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/price">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_mountainBike_price"
-                                        android:inputType="numberDecimal"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="numberDecimal" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:orientation="horizontal">
-                                    <Button
+                                    <com.google.android.material.button.MaterialButton
                                         android:id="@+id/button_adActivity_save_mountainBike"
                                         android:layout_width="wrap_content"
+                                        app:cornerRadius="@dimen/button_cornerRadius"
+                                        android:layout_marginEnd="@dimen/btn_marginStartEnd"
                                         android:layout_height="wrap_content"
                                         android:text="@string/save">
-                                    </Button>
-                                    <Button
+                                    </com.google.android.material.button.MaterialButton>
+
+                                    <com.google.android.material.button.MaterialButton
                                         android:id="@+id/button_adActivity_cancel_mountainBike"
+                                        app:cornerRadius="@dimen/button_cornerRadius"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/cancel">
-                                    </Button>
+                                    </com.google.android.material.button.MaterialButton>
                                 </LinearLayout>
-
                             </LinearLayout>
-
                         </LinearLayout>
 
                     </LinearLayout>
@@ -662,6 +504,7 @@
                         android:id="@+id/linearLayout_adActivity_parts"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="8dp"
                         android:orientation="horizontal">
 
                         //fork
@@ -674,109 +517,79 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_parts_fork_brand"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        android:text="@string/brand"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/brand">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_parts_fork_brand"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_parts_fork_model"
-                                        android:text="@string/model"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"/>
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/model">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_parts_fork_model"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-                                //travel int
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_parts_fork_travel"
-                                        android:text="@string/travel"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"/>
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/travel">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_parts_fork_travel"
-                                        android:inputType="number"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="number" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-                                //price long
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_parts_fork_price"
-                                        android:text="@string/price"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"/>
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/price">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_parts_fork_price"
-                                        android:inputType="numberDecimal"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="numberDecimal" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:orientation="horizontal">
-                                    <Button
+                                    <com.google.android.material.button.MaterialButton
                                         android:id="@+id/button_adActivity_save_fork"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        app:cornerRadius="@dimen/button_cornerRadius"
+                                        android:layout_marginEnd="@dimen/btn_marginStartEnd"
                                         android:text="@string/save">
-                                    </Button>
-                                    <Button
+                                    </com.google.android.material.button.MaterialButton>
+
+                                    <com.google.android.material.button.MaterialButton
                                         android:id="@+id/button_adActivity_cancel_fork"
+                                        app:cornerRadius="@dimen/button_cornerRadius"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/cancel">
-                                    </Button>
+                                    </com.google.android.material.button.MaterialButton>
                                 </LinearLayout>
 
                             </LinearLayout>
@@ -794,125 +607,91 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_parts_wheel_brand"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"
-                                        android:text="@string/brand"
-                                        />
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/brand">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_parts_wheel_brand"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_parts_wheel_model"
-                                        android:text="@string/model"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"/>
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/model">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_parts_wheel_model"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_parts_wheel_size"
-                                        android:text="@string/wheel_size"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"/>
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/wheel_size">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_parts_wheel_size"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
 
-
-                                <LinearLayout
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_parts_wheel_material"
-                                        android:text="@string/material"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"/>
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/material">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_parts_wheel_material"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
-                                <LinearLayout
+                                        android:inputType="text" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="@dimen/ad_linearlayout_product_field_padding"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/tv_ad_parts_wheel_price"
-                                        android:text="@string/price"
-                                        android:layout_height="wrap_content"
-                                        android:layout_width="wrap_content"
-                                        android:layout_weight="0.2"/>
-                                    <EditText
+                                    android:layout_marginBottom="8dp"
+                                    android:hint="@string/price">
+                                    <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/et_ad_parts_wheel_price"
-                                        android:inputType="numberDecimal"
-                                        android:layout_weight="0.80"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        />
-                                </LinearLayout>
+                                        android:inputType="numberDecimal" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:orientation="horizontal">
-                                    <Button
+                                    <com.google.android.material.button.MaterialButton
                                         android:id="@+id/button_adActivity_save_wheel"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginEnd="@dimen/btn_marginStartEnd"
+                                        app:cornerRadius="@dimen/button_cornerRadius"
                                         android:text="@string/save">
-                                    </Button>
-                                    <Button
+                                    </com.google.android.material.button.MaterialButton>
+                                    <com.google.android.material.button.MaterialButton
                                         android:id="@+id/button_adActivity_cancel_wheel"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        app:cornerRadius="@dimen/button_cornerRadius"
                                         android:text="@string/cancel">
-                                    </Button>
+                                    </com.google.android.material.button.MaterialButton>
                                 </LinearLayout>
 
                             </LinearLayout>
@@ -928,6 +707,5 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

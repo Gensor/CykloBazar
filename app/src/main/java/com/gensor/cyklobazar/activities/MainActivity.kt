@@ -3,6 +3,7 @@ package com.gensor.cyklobazar.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main_main.*
 import kotlinx.android.synthetic.main.activity_main_main_content.*
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.coroutines.launch
 
@@ -36,7 +38,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         nav_view.setNavigationItemSelectedListener(this)
 
         lifecycleScope.launch {
+            rv_main.visibility = View.GONE
+            progressBar_main.visibility = View.VISIBLE
+
             database.getAllAds(this@MainActivity)
+
+            progressBar_main.visibility = View.GONE
+            rv_main.visibility = View.VISIBLE
         }
     }
 
@@ -133,7 +141,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .centerCrop()
                         .transform(CircleCrop())
-                        .placeholder(resources.getDrawable(R.drawable.ic_baseline_person_24,theme))
                         .into(iv_user_image)
 
                     tv_username.text = user.name
@@ -144,7 +151,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             Session.LOGOUT -> {
                 nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_logged, false)
                 nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_sign_out, true)
-                iv_user_image.setImageResource(R.drawable.ic_baseline_person_24)
+                Glide.with(this).clear(iv_user_image)
                 tv_username.text = ""
             }
         }

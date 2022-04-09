@@ -2,12 +2,14 @@ package com.gensor.cyklobazar.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gensor.cyklobazar.R
 import com.gensor.cyklobazar.adapters.MyAdsProductAdapter
 import com.gensor.cyklobazar.database.Database
 import com.gensor.cyklobazar.models.Product
+import kotlinx.android.synthetic.main.activity_main_main_content.*
 import kotlinx.android.synthetic.main.activity_my_ads.*
 import kotlinx.coroutines.launch
 
@@ -21,8 +23,11 @@ class MyAdsActivity : BaseActivity() {
         val bundle = intent.getBundleExtra("bundle")
         database = bundle?.getParcelable<Database>("database")!!
         lifecycleScope.launch {
+            rv_myAds.visibility = View.GONE
+            progressBar_myAds.visibility = View.VISIBLE
         database.getMyAds(this@MyAdsActivity)
-
+            progressBar_myAds.visibility = View.GONE
+            rv_myAds.visibility = View.VISIBLE
         }
 
     }
