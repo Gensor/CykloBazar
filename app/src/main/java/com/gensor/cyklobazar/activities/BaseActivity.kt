@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.Gravity
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
@@ -58,6 +60,9 @@ open class BaseActivity : AppCompatActivity() {
             message,
             Snackbar.LENGTH_LONG)
         val snackBarView = snackBar.view
+        val param = snackBarView.layoutParams as FrameLayout.LayoutParams
+        param.gravity = Gravity.TOP
+        snackBarView.layoutParams = param
         snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.snackbar_error_color))
         snackBar.show()
     }

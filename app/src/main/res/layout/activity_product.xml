@@ -136,7 +136,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_product_back"
                 app:cornerRadius="@dimen/button_cornerRadius"
-                android:layout_height="60dp"
+                android:layout_height="@dimen/button_height"
                 android:layout_width="match_parent"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="16dp"

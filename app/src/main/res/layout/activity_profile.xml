@@ -107,10 +107,11 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_profile_save"
+                app:cornerRadius="@dimen/button_cornerRadius"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginTop="8dp"
                 android:text="@string/save" />
         </LinearLayout>
