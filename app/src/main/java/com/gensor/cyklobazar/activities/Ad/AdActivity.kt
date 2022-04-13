@@ -88,6 +88,9 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
 
     }
 
+    /*
+    Listenery pre všetky tlačidlá vo formulároch.
+     */
     override fun onClick(view : View){
         lifecycleScope.launch {
 
@@ -161,6 +164,9 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
         }
     }
 
+    /*
+    Po vložení obrázka do úložiska sa zavolá táto metóda, ktorá produktu priradí url adresu obrázka v úložisku.
+     */
     fun setImageUrl(url : String){
         imageUrl = url
         productData["image"] = imageUrl

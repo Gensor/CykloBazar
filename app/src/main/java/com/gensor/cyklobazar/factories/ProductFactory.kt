@@ -20,8 +20,11 @@ object ProductFactory {
         }
         return null
     }
-    private fun getEbike(data : HashMap<String, Any>) : EBike{
-        val bike = EBikeBuilder.Builder()
+
+    /*
+    Builder pattern
+     */
+    private fun getEbike(data : HashMap<String, Any>) : EBike = EBikeBuilder.Builder()
             .brand(data["brand"] as String)
             .model(data["model"] as String)
             .year(data["year"] as Int)
@@ -32,9 +35,11 @@ object ProductFactory {
             .userId(data["userId"] as String)
             .image(data["image"] as String)
             .build()
-        return bike
-    }
 
+
+    /*
+    Kotlin verzia builder patternu
+     */
     private fun getMountainBike(data : HashMap<String, Any>) = MountainBike(
         brand = data["brand"] as String,
         model = data["model"] as String,

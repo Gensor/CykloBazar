@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.dialog_progress.*
 open class BaseActivity : AppCompatActivity() {
 
     private var doubleBackToExitPressedOnce = false
-    private lateinit var mProgressDialog: Dialog
+    private lateinit var progressDialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,14 +24,14 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun showProgressDialog(text : String){
-        mProgressDialog = Dialog(this)
-        mProgressDialog.setContentView(R.layout.dialog_progress)
-        mProgressDialog.tv_progress_text.text = text
-        mProgressDialog.show()
+        progressDialog = Dialog(this)
+        progressDialog.setContentView(R.layout.dialog_progress)
+        progressDialog.tv_progress_text.text = text
+        progressDialog.show()
     }
 
     fun hideProgressDialog(){
-        mProgressDialog.dismiss()
+        progressDialog.dismiss()
     }
 
     override fun onBackPressed() {
