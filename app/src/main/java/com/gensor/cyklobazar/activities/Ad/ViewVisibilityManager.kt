@@ -19,5 +19,4 @@ class ViewVisibilityManager {
             viewVisibility.update()
         }
     }
-
 }

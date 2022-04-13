@@ -39,6 +39,7 @@
     <string name="no_ads_available">No Ads Available</string>
     <string name="empty">Empty</string>
     <string name="ad">Ad</string>
+    <string name="close">Close</string>
 
     <string-array name="ad_productCategory_spinner">
         <item name="bikes" type="string">Bikes</item>

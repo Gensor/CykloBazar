@@ -8,7 +8,7 @@ class EBikeBuilder private constructor(
     val year: Int?,
     val price: Long?,
     val motor: String?,
-    val kw: Int?,
+    val power: Int?,
     val batteryCapacity: Int?,
     val userId: String?,
     val image: String?
@@ -20,22 +20,21 @@ class EBikeBuilder private constructor(
         var year: Int = 0,
         var price: Long = 0L,
         var motor: String = "",
-        var kw: Int = 0,
+        var power: Int = 0,
         var batteryCapacity: Int = 0,
         var userId : String = "",
         var image: String = ""
-    )
-    {
+    ) {
         fun brand(brand: String) = apply { this.brand = brand }
         fun model(model: String) = apply { this.model = model }
         fun year(year: Int) = apply { this.year = year }
         fun price(price : Long) = apply { this.price = price }
         fun motor(motor: String) = apply { this.motor = motor }
-        fun kw(kw : Int) = apply { this.kw = kw }
+        fun kw(power : Int) = apply { this.power = power }
         fun batteryCapacity(batteryCapacity : Int) = apply { this.batteryCapacity = batteryCapacity }
         fun userId(userId: String) = apply { this.userId = userId }
         fun image(imageUrl : String) = apply { this.image = imageUrl }
 
-        fun build() = EBike("", brand, model, year, price, motor, kw, batteryCapacity, userId, image)
+        fun build() = EBike("", brand, model, year, price, motor, power, batteryCapacity, userId, image)
     }
 }

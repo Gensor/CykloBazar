@@ -37,6 +37,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
     private var database : Database? = null
     private var imageUrl = ""
     private var selectedImageFileUri : Uri? = null
+    private val errorMessage = "Failed to save product"
 
     //observer pre formulare
     private val formViewManager = ViewVisibilityManager()
@@ -98,7 +99,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
                     val ebike = ProductFactory.createProduct(Constants.EBIKE, productData)
                     if (ebike != null)
                         database?.addProduct(ebike)
-                    else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    else Toast.makeText(this@AdActivity, errorMessage,Toast.LENGTH_LONG).show()
                     hideProgressDialog()
                     onBackPressed()
 
@@ -110,7 +111,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
                     val roadBike = ProductFactory.createProduct(Constants.ROADBIKE, productData)
                     if (roadBike != null)
                         database?.addProduct(roadBike)
-                    else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    else Toast.makeText(this@AdActivity, errorMessage,Toast.LENGTH_LONG).show()
                     hideProgressDialog()
                     onBackPressed()
                 }
@@ -121,7 +122,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
                     val fork = ProductFactory.createProduct(Constants.FORK, productData)
                     if(fork != null)
                         database?.addProduct(fork)
-                    else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    else Toast.makeText(this@AdActivity, errorMessage,Toast.LENGTH_LONG).show()
                     hideProgressDialog()
                     onBackPressed()
                 }
@@ -132,7 +133,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
                     val mountainBike = ProductFactory.createProduct(Constants.MOUNTAINBIKE, productData)
                     if(mountainBike != null)
                         database?.addProduct(mountainBike)
-                    else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    else Toast.makeText(this@AdActivity, errorMessage,Toast.LENGTH_LONG).show()
                     hideProgressDialog()
                     onBackPressed()
                 }
@@ -143,7 +144,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
                     val wheel = ProductFactory.createProduct(Constants.WHEEL, productData)
                     if(wheel != null)
                         database?.addProduct(wheel)
-                    else Toast.makeText(this@AdActivity, "Failed to save product",Toast.LENGTH_LONG).show()
+                    else Toast.makeText(this@AdActivity, errorMessage,Toast.LENGTH_LONG).show()
                     hideProgressDialog()
                     onBackPressed()
                 }
@@ -293,7 +294,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
         val data : HashMap<String, Any> = HashMap()
         var year = 0
         var price = 0L
-        var kw = 0
+        var power = 0
         var batteryCapacity = 0
 
         val brand = et_ad_ebike_brand.text.toString()
@@ -304,7 +305,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
         if(et_ad_ebike_price.text.toString().isNotEmpty())
             price = et_ad_ebike_price.text.toString().toLong()
         if(et_ad_ebike_power.text.toString().isNotEmpty())
-            kw = et_ad_ebike_power.text.toString().toInt()
+            power = et_ad_ebike_power.text.toString().toInt()
         if(et_ad_ebike_battery.text.toString().isNotEmpty())
             batteryCapacity = et_ad_ebike_battery.text.toString().toInt()
         val image = imageUrl
@@ -314,7 +315,7 @@ class AdActivity : BaseActivity(), AdapterView.OnItemSelectedListener, View.OnCl
         data.set("year", year)
         data.set("price", price)
         data.set("motor", motor)
-        data.set("kw", kw)
+        data.set("power", power)
         data.set("batteryCapacity", batteryCapacity)
         database?.let { data.set("userId", it.getUserId()) }
         data.set("image", image)

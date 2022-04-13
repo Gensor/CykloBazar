@@ -27,7 +27,7 @@ object ProductFactory {
             .year(data["year"] as Int)
             .price(data["price"] as Long)
             .motor(data["motor"] as String)
-            .kw(data["kw"] as Int)
+            .kw(data["power"] as Int)
             .batteryCapacity(data["batteryCapacity"] as Int)
             .userId(data["userId"] as String)
             .image(data["image"] as String)

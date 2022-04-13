@@ -17,5 +17,4 @@ class ViewVisibility (
             else -> view.visibility = View.GONE
         }
     }
-
 }
