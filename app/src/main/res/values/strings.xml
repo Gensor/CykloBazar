@@ -4,8 +4,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="name">Name</string>
-    <string name="register_button">Register</string>
-    <string name="register_toolbar_register">Register</string>
+    <string name="register">Register</string>
     <string name="please_wait">Please wait</string>
     <string name="please_click_back_againt_to_exit">Please click back again to exit</string>
     <string name="nav_log_out">Log out</string>

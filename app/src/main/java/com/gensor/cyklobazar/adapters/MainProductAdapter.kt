@@ -39,18 +39,14 @@ class MainProductAdapter(
 
     private suspend fun populateFields(product: Product, holder: MainProductAdapter.ViewHolder, position: Int){
         holder.title.text = "${product.brand} ${product.model}"
-
         Glide
             .with(context)
             .load(product.image)
             .centerCrop()
             .placeholder(R.drawable.ic_baseline_insert_photo_24)
             .into(holder.productImage)
-
         holder.price.text = "Price: ${product.price} €"
-
         holder.postedBy.text = database.getUserName(product.userId)
-
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelable("product", product)
@@ -69,7 +65,6 @@ class MainProductAdapter(
         var productImage : ImageView
         var postedBy : TextView
         var price : TextView
-
 
         init{
             title = itemView.findViewById(R.id.tv_main_main_brand)

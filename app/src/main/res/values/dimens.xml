@@ -27,4 +27,6 @@
     <dimen name="button_height">60dp</dimen>
     <dimen name="cardView_margin_startEnd">16dp</dimen>
     <dimen name="cardView_linearLayout_margin">16dp</dimen>
+    <dimen name="spinner_height">48dp</dimen>
+
 </resources>

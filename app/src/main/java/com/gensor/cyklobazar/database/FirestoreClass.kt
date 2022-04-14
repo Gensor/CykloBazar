@@ -260,7 +260,6 @@ class FirestoreClass() : Database {
             }
         }
         activity.showProducts(array)
-
     }
 
     /*
