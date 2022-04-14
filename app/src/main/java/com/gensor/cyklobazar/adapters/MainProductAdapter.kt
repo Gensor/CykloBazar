@@ -26,14 +26,13 @@ class MainProductAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainProductAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.activity_main_main_ad, parent, false)
+            .inflate(R.layout.activity_main_ad, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MainProductAdapter.ViewHolder, position: Int) {
         val product = listOfProducts.get(position)
         GlobalScope.launch(Dispatchers.Main){
-
             populateFields(product, holder, position)
         }
     }
@@ -59,9 +58,8 @@ class MainProductAdapter(
             context.startActivity(Intent(context, ProductActivity::class.java)
                 .putExtra("bundle", bundle))
         }
-
-
     }
+
     override fun getItemCount(): Int {
         return listOfProducts.size
     }

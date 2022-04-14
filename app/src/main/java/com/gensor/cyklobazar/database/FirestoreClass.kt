@@ -211,6 +211,7 @@ class FirestoreClass() : Database {
         val documentReference = ref.add(product).await()
         ref.document(documentReference.id).set(hashMapOf("id" to documentReference.id), SetOptions.merge())
     }
+
     /*
     metoda na vymazanie dokumentu z kolekcie podla id
      */

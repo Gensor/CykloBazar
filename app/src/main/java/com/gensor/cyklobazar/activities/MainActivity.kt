@@ -20,8 +20,7 @@ import com.gensor.cyklobazar.models.User
 import com.gensor.cyklobazar.utils.Session
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main_main.*
-import kotlinx.android.synthetic.main.activity_main_main_content.*
+import kotlinx.android.synthetic.main.activity_main_content.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.coroutines.launch
 
@@ -143,13 +142,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         .into(iv_user_image)
 
                     tv_username.text = user.name
-                    nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_logged, true)
-                    nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_sign_out, false)
+                    nav_view.menu.setGroupVisible(R.id.activity_main_drawer_logged, true)
+                    nav_view.menu.setGroupVisible(R.id.activity_main_drawer_sign_out, false)
                 }
             }
             Session.LOGOUT -> {
-                nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_logged, false)
-                nav_view.getMenu().setGroupVisible(R.id.activity_main_drawer_sign_out, true)
+                nav_view.menu.setGroupVisible(R.id.activity_main_drawer_logged, false)
+                nav_view.menu.setGroupVisible(R.id.activity_main_drawer_sign_out, true)
                 Glide.with(this).clear(iv_user_image)
                 tv_username.text = ""
             }
